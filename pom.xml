@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>com.bin</groupId>
+    <artifactId>CoolInstantMessage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>gateway</module>
+        <module>im</module>
+    </modules>
+
+    <properties>
+        <java.version>8</java.version>
+        <maven.compiler.source></maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.6.6</spring-boot.version>
+        <jackson.version>2.12.3</jackson.version>
+        <fastjson.verson>1.2.76</fastjson.verson>
+        <spring.cloud.alibaba.version>2021.0.1.0</spring.cloud.alibaba.version>
+        <lombok.version>1.18.24</lombok.version>
+        <async-http-client.version>2.12.1</async-http-client.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.verson}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
