@@ -1,4 +1,4 @@
-package com.bin.socket;
+package com.bin.access;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

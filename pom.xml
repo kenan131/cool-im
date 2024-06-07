@@ -30,6 +30,7 @@
         <spring.cloud.alibaba.version>2021.0.1.0</spring.cloud.alibaba.version>
         <lombok.version>1.18.24</lombok.version>
         <async-http-client.version>2.12.1</async-http-client.version>
+        <hutool.version>5.8.18</hutool.version>
     </properties>
 
 
@@ -43,6 +44,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.verson}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 

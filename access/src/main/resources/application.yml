@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: access
+
+
+im:
+  server:
+    port: 8081
