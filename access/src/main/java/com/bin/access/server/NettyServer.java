@@ -37,9 +37,7 @@ public class NettyServer {
 
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private EventLoopGroup workerGroup = new NioEventLoopGroup(NettyRuntime.availableProcessors());
-
     private ThreadPoolExecutor processThreadPool;
-
     private ServerHandler serverHandler;
 
     @Value("${im.server.port}")

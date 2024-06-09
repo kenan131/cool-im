@@ -29,4 +29,9 @@ public class ServerCache {
         userIdChannelMap.put(userId,ctx.channel());
         channelUserIdMap.put(ctx.channel(),userId);
     }
+
+    public Channel getChannel(Integer userId){
+        Channel channel = userIdChannelMap.get(userId);
+        return channel;
+    }
 }

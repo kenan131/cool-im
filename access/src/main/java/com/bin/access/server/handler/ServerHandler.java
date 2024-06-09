@@ -62,7 +62,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<TextWebSocketFram
                             // TODO
                         }
                         serverCache.onLine(userId,ctx);
-//                        ctx.writeAndFlush("你哈！").addListener(ChannelFutureListener.CLOSE);
                     }
                 });
             }
