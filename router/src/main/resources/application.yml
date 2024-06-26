@@ -1,0 +1,25 @@
+dubbo:
+  application:
+    name: dubbo-router
+    version: 1.0.0
+  protocol:
+    name: dubbo
+    port: 20881
+  registry:
+    address: nacos://localhost:8848
+
+spring:
+  application:
+    name: Router
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+server:
+  port: 8081
+
+
+access:
+  dubbo:
+    port: 20880

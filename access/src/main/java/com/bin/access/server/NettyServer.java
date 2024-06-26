@@ -2,6 +2,7 @@ package com.bin.access.server;
 
 import com.bin.access.server.handler.HttpHeadersHandler;
 import com.bin.access.server.handler.ServerHandler;
+import com.bin.access.service.NettyServerRegister;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -20,6 +21,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.NettyRuntime;
 import io.netty.util.concurrent.Future;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +41,9 @@ public class NettyServer {
     private EventLoopGroup workerGroup = new NioEventLoopGroup(NettyRuntime.availableProcessors());
     private ThreadPoolExecutor processThreadPool;
     private ServerHandler serverHandler;
+
+    @Autowired
+    private NettyServerRegister nettyServerRegister;
 
     @Value("${im.server.port}")
     private Integer port;
@@ -89,6 +94,7 @@ public class NettyServer {
                 });
         // 启动服务器，监听端口，阻塞直到启动成功
         serverBootstrap.bind(port).sync();
+        nettyServerRegister.registerService();
     }
 
 
@@ -98,6 +104,8 @@ public class NettyServer {
         Future<?> future1 = workerGroup.shutdownGracefully();
         future.syncUninterruptibly();
         future1.syncUninterruptibly();
+        // 将注册的服务失效。
+        nettyServerRegister.deregisterService();
         log.info("关闭 ws server 成功");
     }
 }

@@ -17,7 +17,10 @@
         <module>access</module>
         <module>router</module>
         <module>client</module>
+        <module>user</module>
+        <module>common</module>
     </modules>
+
 
     <properties>
         <java.version>8</java.version>
@@ -31,7 +34,30 @@
         <lombok.version>1.18.24</lombok.version>
         <async-http-client.version>2.12.1</async-http-client.version>
         <hutool.version>5.8.18</hutool.version>
+        <mybatis-plus-boot-starter.version>3.4.0</mybatis-plus-boot-starter.version>
+        <mysql-connector.version>8.0.29</mysql-connector.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <dependencies>

@@ -1,10 +1,9 @@
 package com.bin.access.server.handler;
 
 import cn.hutool.core.util.StrUtil;
-import com.bin.access.api.UserApi;
-import com.bin.access.server.service.ServerCache;
+import cn.hutool.extra.spring.SpringUtil;
+import com.bin.access.service.WebSocketService;
 import com.bin.access.util.NettyUtil;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -25,12 +24,16 @@ import java.util.concurrent.ThreadPoolExecutor;
 @ChannelHandler.Sharable
 public class ServerHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
-    private ServerCache serverCache = ServerCache.Instance;
-
+    private WebSocketService webSocketService ;
     private ThreadPoolExecutor executor;
 
     public ServerHandler(ThreadPoolExecutor executor) {
         this.executor = executor;
+    }
+
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+        this.webSocketService = SpringUtil.getBean(WebSocketService.class);
     }
 
     @Override
@@ -46,22 +49,15 @@ public class ServerHandler extends SimpleChannelInboundHandler<TextWebSocketFram
             // 读空闲
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
                 // 关闭用户的连接
-                serverCache.offLine(ctx);
+                webSocketService.offLine(ctx);
             }
         } else if (evt instanceof WebSocketServerProtocolHandler.HandshakeComplete) {
             String token = NettyUtil.getAttr(ctx.channel(), NettyUtil.TOKEN);
-            System.out.println(token);
             if (StrUtil.isNotBlank(token)) {
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        Integer userId = UserApi.getUserId(token);
-                        if(userId == null){
-                            serverCache.offLine(ctx);
-                            // 前端token过期，发送消息给前端清理。
-                            // TODO
-                        }
-                        serverCache.onLine(userId,ctx);
+                        webSocketService.connect(token,ctx);
                     }
                 });
             }
@@ -72,13 +68,13 @@ public class ServerHandler extends SimpleChannelInboundHandler<TextWebSocketFram
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         log.warn("触发 channelInactive 掉线![{}]", ctx.channel().id());
-        serverCache.offLine(ctx);
+        webSocketService.offLine(ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         log.warn("异常发生，异常消息 ={}", cause);
-        serverCache.offLine(ctx);
+        webSocketService.offLine(ctx);
         ctx.channel().close();
     }
 
