@@ -1,17 +1,17 @@
 package com.bin.im.service.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.bin.im.domain.entity.Message;
-import com.bin.im.domain.entity.MessageMark;
-import com.bin.im.domain.enums.MessageMarkTypeEnum;
-import com.bin.im.domain.enums.MessageStatusEnum;
-import com.bin.im.domain.enums.MessageTypeEnum;
-import com.bin.im.domain.vo.request.ChatMessageReq;
-import com.bin.im.domain.vo.request.msg.TextMsgReq;
-import com.bin.im.domain.vo.response.ChatMessageResp;
+import com.bin.model.im.entity.Message;
+import com.bin.model.im.entity.MessageMark;
+import com.bin.model.user.enums.MessageMarkTypeEnum;
+import com.bin.model.user.enums.MessageStatusEnum;
+import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.im.vo.request.ChatMessageReq;
+import com.bin.model.im.vo.request.msg.TextMsgReq;
+import com.bin.model.im.vo.response.ChatMessageResp;
 import com.bin.im.service.strategy.msg.AbstractMsgHandler;
 import com.bin.im.service.strategy.msg.MsgHandlerFactory;
-import com.bin.im.domain.enums.YesOrNoEnum;
+import com.bin.model.user.enums.YesOrNoEnum;
 import com.bin.im.service.strategy.msg.AbstractMsgHandler;
 import com.bin.im.service.strategy.msg.MsgHandlerFactory;
 

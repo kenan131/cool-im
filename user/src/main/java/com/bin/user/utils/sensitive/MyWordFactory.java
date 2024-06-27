@@ -1,7 +1,7 @@
 package com.bin.user.utils.sensitive;
 
-import com.bin.user.dao.SensitiveWordDao;
-import com.bin.user.domain.entity.SensitiveWord;
+import com.bin.user.utils.sensitive.domian.SensitiveWord;
+import com.bin.user.utils.sensitive.domian.SensitiveWordDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

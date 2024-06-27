@@ -1,6 +1,6 @@
 package com.bin.user.utils;
 
-import com.bin.user.domain.dto.RequestInfo;
+import com.bin.model.user.dto.RequestInfo;
 
 /**
  * Description: 请求上下文

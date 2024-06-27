@@ -1,8 +1,8 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.dto.MsgReadInfoDTO;
-import com.bin.im.domain.entity.Contact;
-import com.bin.im.domain.entity.Message;
+import com.bin.model.im.dto.MsgReadInfoDTO;
+import com.bin.model.im.entity.Contact;
+import com.bin.model.im.entity.Message;
 
 import java.util.List;
 import java.util.Map;

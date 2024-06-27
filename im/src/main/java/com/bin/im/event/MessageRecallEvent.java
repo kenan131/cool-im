@@ -1,6 +1,6 @@
 package com.bin.im.event;
 
-import com.bin.im.domain.dto.ChatMsgRecallDTO;
+import com.bin.model.im.dto.ChatMsgRecallDTO;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

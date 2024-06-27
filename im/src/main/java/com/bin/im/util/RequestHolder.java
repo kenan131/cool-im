@@ -1,6 +1,6 @@
 package com.bin.im.util;
 
-import com.bin.im.domain.vo.request.common.RequestInfo;
+import com.bin.model.user.dto.RequestInfo;
 
 /**
  * Description: 请求上下文

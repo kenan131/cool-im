@@ -2,7 +2,7 @@ package com.bin.im.service.cache.imp;
 
 import com.bin.im.dao.RoomDao;
 import com.bin.im.dao.RoomFriendDao;
-import com.bin.im.domain.entity.Room;
+import com.bin.model.im.entity.Room;
 import com.bin.im.service.cache.AbstractRedisStringCache;
 import com.bin.im.util.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;

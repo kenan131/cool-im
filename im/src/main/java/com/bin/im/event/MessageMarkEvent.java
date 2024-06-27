@@ -1,6 +1,6 @@
 package com.bin.im.event;
 
-import com.bin.im.domain.dto.ChatMessageMarkDTO;
+import com.bin.model.im.dto.ChatMessageMarkDTO;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

@@ -2,28 +2,32 @@ package com.bin.im.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.Pair;
-import com.bin.im.api.IRoleService;
-import com.bin.im.api.IUserService;
 import com.bin.im.aspect.annotation.RedissonLock;
 import com.bin.im.dao.ContactDao;
 import com.bin.im.dao.GroupMemberDao;
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.dto.RoomBaseInfo;
-import com.bin.im.domain.entity.*;
-import com.bin.im.domain.enums.*;
-import com.bin.im.domain.vo.request.ChatMessageMemberReq;
-import com.bin.im.domain.vo.request.GroupAddReq;
-import com.bin.im.domain.vo.request.member.MemberAddReq;
-import com.bin.im.domain.vo.request.member.MemberDelReq;
-import com.bin.im.domain.vo.request.member.MemberReq;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.vo.response.ChatRoomResp;
-import com.bin.im.domain.vo.response.MemberResp;
-import com.bin.im.domain.ws.ChatMemberResp;
-import com.bin.im.domain.ws.WSMemberChange;
+import com.bin.api.user.UserServiceApi;
+import com.bin.model.user.enums.GroupErrorEnum;
+import com.bin.model.user.enums.GroupRoleAPPEnum;
+import com.bin.model.user.enums.GroupRoleEnum;
+import com.bin.model.user.enums.HotFlagEnum;
+import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.user.enums.RoomTypeEnum;
+import com.bin.model.im.dto.RoomBaseInfo;
+import com.bin.model.im.entity.*;
+import com.bin.model.user.enums.*;
+import com.bin.model.im.vo.request.ChatMessageMemberReq;
+import com.bin.model.im.vo.request.GroupAddReq;
+import com.bin.model.im.vo.request.member.MemberAddReq;
+import com.bin.model.im.vo.request.member.MemberDelReq;
+import com.bin.model.im.vo.request.member.MemberReq;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.im.vo.response.ChatRoomResp;
+import com.bin.model.im.vo.response.MemberResp;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
+import com.bin.model.user.vo.response.ws.WSMemberChange;
 import com.bin.im.event.GroupMemberAddEvent;
 import com.bin.im.mq.PushService;
-import com.bin.im.mq.dto.WSBaseResp;
 import com.bin.im.service.ChatService;
 import com.bin.im.service.RoomAppService;
 import com.bin.im.service.RoomService;
@@ -33,8 +37,8 @@ import com.bin.im.service.adapter.RoomAdapter;
 import com.bin.im.service.cache.imp.*;
 import com.bin.im.service.strategy.msg.AbstractMsgHandler;
 import com.bin.im.service.strategy.msg.MsgHandlerFactory;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.im.util.AssertUtil;
 import com.bin.model.user.entity.User;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -75,12 +79,10 @@ public class RoomAppServiceImpl implements RoomAppService {
     private UserCache userCache;
     @Autowired
     private GroupMemberDao groupMemberDao;
-    @DubboReference(interfaceClass = IUserService.class)
-    private IUserService IUserService;
     @Autowired
     private ChatService chatService;
-    @DubboReference(interfaceClass = IRoleService.class)
-    private IRoleService iRoleService;
+    @DubboReference(interfaceClass = UserServiceApi.class)
+    private UserServiceApi userServiceApi;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
     @Autowired
@@ -146,7 +148,7 @@ public class RoomAppServiceImpl implements RoomAppService {
             onlineNum = userCache.getOnlineNum();
         } else {
             List<Long> memberUidList = groupMemberDao.getMemberUidList(roomGroup.getId());
-            onlineNum = IUserService.getOnlineCount(memberUidList).longValue();
+            onlineNum = userServiceApi.getOnlineCount(memberUidList).longValue();
         }
         GroupRoleAPPEnum groupRole = getGroupRole(uid, roomGroup, room);
         return MemberResp.builder()
@@ -178,12 +180,12 @@ public class RoomAppServiceImpl implements RoomAppService {
         Room room = roomCache.get(request.getRoomId());
         AssertUtil.isNotEmpty(room, "房间号有误");
         if (isHotGroup(room)) {// 全员群展示所有用户100名
-            List<User> memberList = IUserService.getMemberList();
+            List<User> memberList = userServiceApi.getMemberList();
             return MemberAdapter.buildMemberList(memberList);
         } else {
             RoomGroup roomGroup = roomGroupCache.get(request.getRoomId());
             List<Long> memberUidList = groupMemberDao.getMemberUidList(roomGroup.getId());
-            Map<Long, User> batch = IUserService.getBatch(memberUidList);
+            Map<Long, User> batch = userServiceApi.getBatch(memberUidList);
             return MemberAdapter.buildMemberList(batch);
         }
     }
@@ -256,7 +258,7 @@ public class RoomAppServiceImpl implements RoomAppService {
     private boolean hasPower(GroupMember self) {
         return Objects.equals(self.getRole(), GroupRoleEnum.LEADER.getType())
                 || Objects.equals(self.getRole(), GroupRoleEnum.MANAGER.getType())
-                || iRoleService.hasPower(self.getUid(), RoleEnum.ADMIN);
+                || userServiceApi.hasPower(self.getUid(), RoleEnum.ADMIN);
 
     }
 
@@ -310,7 +312,7 @@ public class RoomAppServiceImpl implements RoomAppService {
         List<Long> msgIds = roomBaseInfoMap.values().stream().map(RoomBaseInfo::getLastMsgId).collect(Collectors.toList());
         List<Message> messages = CollectionUtil.isEmpty(msgIds) ? new ArrayList<>() : messageDao.listByIds(msgIds);
         Map<Long, Message> msgMap = messages.stream().collect(Collectors.toMap(Message::getId, Function.identity()));
-        Map<Long, User> lastMsgUidMap = IUserService.getBatch(messages.stream().map(Message::getFromUid).collect(Collectors.toList()));
+        Map<Long, User> lastMsgUidMap = userServiceApi.getBatch(messages.stream().map(Message::getFromUid).collect(Collectors.toList()));
         // 消息未读数
         Map<Long, Integer> unReadCountMap = getUnReadCountMap(uid, roomIds);
         return roomBaseInfoMap.values().stream().map(room -> {
@@ -352,7 +354,7 @@ public class RoomAppServiceImpl implements RoomAppService {
         }
         Map<Long, RoomFriend> roomFriendMap = roomFriendCache.getBatch(roomIds);
         Set<Long> friendUidSet = ChatAdapter.getFriendUidSet(roomFriendMap.values(), uid);
-        Map<Long, User> userBatch = IUserService.getBatch(new ArrayList<>(friendUidSet));
+        Map<Long, User> userBatch = userServiceApi.getBatch(new ArrayList<>(friendUidSet));
         return roomFriendMap.values()
                 .stream()
                 .collect(Collectors.toMap(RoomFriend::getRoomId, roomFriend -> {

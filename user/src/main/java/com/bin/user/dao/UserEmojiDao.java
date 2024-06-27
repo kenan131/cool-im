@@ -1,7 +1,7 @@
 package com.bin.user.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.UserEmoji;
+import com.bin.model.user.entity.UserEmoji;
 import com.bin.user.mapper.UserEmojiMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,19 +1,18 @@
 package com.bin.im.service.strategy.msg;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.bin.im.api.IRoleService;
-import com.bin.im.api.IUserService;
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.common.UrlInfo;
-import com.bin.im.domain.entity.Message;
+import com.bin.api.user.UserServiceApi;
+import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.user.dto.UrlInfo;
+import com.bin.model.im.entity.Message;
 import com.bin.model.user.entity.User;
-import com.bin.im.domain.entity.msg.MessageExtra;
-import com.bin.im.domain.enums.MessageStatusEnum;
-import com.bin.im.domain.enums.MessageTypeEnum;
-import com.bin.im.domain.enums.RoleEnum;
-import com.bin.im.domain.enums.YesOrNoEnum;
-import com.bin.im.domain.vo.request.msg.TextMsgReq;
-import com.bin.im.domain.vo.response.msg.TextMsgResp;
+import com.bin.model.im.entity.msg.MessageExtra;
+import com.bin.model.user.enums.MessageStatusEnum;
+import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.im.vo.request.msg.TextMsgReq;
+import com.bin.model.im.vo.response.msg.TextMsgResp;
 import com.bin.im.service.adapter.MessageAdapter;
 import com.bin.im.service.cache.imp.MsgCache;
 import com.bin.im.service.cache.imp.UserCache;
@@ -43,11 +42,8 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
     private MsgCache msgCache;
     @Autowired
     private UserCache userCache;
-    @DubboReference(interfaceClass = IRoleService.class)
-    private IRoleService iRoleService;
-
-    @DubboReference(interfaceClass = IUserService.class)
-    private IUserService IUserService;
+    @DubboReference(interfaceClass = UserServiceApi.class)
+    private UserServiceApi userServiceApi;
 
     @Autowired
     private SensitiveWordBs sensitiveWordBs;
@@ -70,13 +66,13 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
         if (CollectionUtil.isNotEmpty(body.getAtUidList())) {
             //前端传入的@用户列表可能会重复，需要去重
             List<Long> atUidList = body.getAtUidList().stream().distinct().collect(Collectors.toList());
-            Map<Long, User> batch = IUserService.getBatch(atUidList);
+            Map<Long, User> batch = userServiceApi.getBatch(atUidList);
             //如果@用户不存在，userInfoCache 返回的map中依然存在该key，但是value为null，需要过滤掉再校验
             long batchCount = batch.values().stream().filter(Objects::nonNull).count();
             AssertUtil.equal((long)atUidList.size(), batchCount, "@用户不存在");
             boolean atAll = body.getAtUidList().contains(0L);
             if (atAll) {
-                AssertUtil.isTrue(iRoleService.hasPower(uid, RoleEnum.CHAT_MANAGER), "没有权限");
+                AssertUtil.isTrue(userServiceApi.hasPower(uid, RoleEnum.CHAT_MANAGER), "没有权限");
             }
         }
     }

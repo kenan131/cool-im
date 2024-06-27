@@ -1,10 +1,10 @@
 package com.bin.user.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.UserFriend;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.user.entity.UserFriend;
 import com.bin.user.mapper.UserFriendMapper;
-import com.bin.user.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.user.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.user.utils.CursorUtils;
 import org.springframework.stereotype.Service;
 

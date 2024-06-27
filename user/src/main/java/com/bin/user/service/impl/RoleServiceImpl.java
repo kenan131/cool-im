@@ -1,7 +1,7 @@
 package com.bin.user.service.impl;
 
 import com.bin.user.cache.imp.UserCache;
-import com.bin.user.domain.enums.RoleEnum;
+import com.bin.model.user.enums.RoleEnum;
 import com.bin.user.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

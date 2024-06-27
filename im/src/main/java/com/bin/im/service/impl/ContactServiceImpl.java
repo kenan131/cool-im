@@ -2,9 +2,9 @@ package com.bin.im.service.impl;
 
 import com.bin.im.dao.ContactDao;
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.dto.MsgReadInfoDTO;
-import com.bin.im.domain.entity.Contact;
-import com.bin.im.domain.entity.Message;
+import com.bin.model.im.dto.MsgReadInfoDTO;
+import com.bin.model.im.entity.Contact;
+import com.bin.model.im.entity.Message;
 import com.bin.im.service.ContactService;
 import com.bin.im.service.adapter.ChatAdapter;
 import com.bin.im.util.AssertUtil;

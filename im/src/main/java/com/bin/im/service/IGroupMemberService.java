@@ -1,8 +1,8 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.vo.request.admin.AdminAddReq;
-import com.bin.im.domain.vo.request.admin.AdminRevokeReq;
-import com.bin.im.domain.vo.request.member.MemberExitReq;
+import com.bin.model.im.vo.request.admin.AdminAddReq;
+import com.bin.model.im.vo.request.admin.AdminRevokeReq;
+import com.bin.model.im.vo.request.member.MemberExitReq;
 
 /**
  * <p>

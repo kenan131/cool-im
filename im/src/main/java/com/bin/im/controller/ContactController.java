@@ -1,15 +1,15 @@
 package com.bin.im.controller;
 
 
-import com.bin.im.domain.vo.request.ContactFriendReq;
-import com.bin.im.domain.vo.request.IdReqVO;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.response.ChatRoomResp;
+import com.bin.model.im.vo.request.ContactFriendReq;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.im.vo.response.ChatRoomResp;
 import com.bin.im.service.ChatService;
 import com.bin.im.service.RoomAppService;
-import com.bin.im.domain.vo.response.common.ApiResult;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.im.util.RequestHolder;
+import com.bin.model.user.dto.IdReqVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

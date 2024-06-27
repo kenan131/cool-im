@@ -1,6 +1,6 @@
 package com.bin.im.mapper;
 
-import com.bin.im.domain.entity.WxMsg;
+import com.bin.model.im.entity.WxMsg;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

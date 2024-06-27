@@ -1,6 +1,6 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.entity.MessageMark;
+import com.bin.model.im.entity.MessageMark;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

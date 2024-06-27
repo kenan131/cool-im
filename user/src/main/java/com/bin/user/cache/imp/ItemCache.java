@@ -1,7 +1,7 @@
 package com.bin.user.cache.imp;
 
 import com.bin.user.dao.ItemConfigDao;
-import com.bin.user.domain.entity.ItemConfig;
+import com.bin.model.user.entity.ItemConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;

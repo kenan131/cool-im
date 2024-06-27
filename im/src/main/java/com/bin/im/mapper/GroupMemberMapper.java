@@ -1,6 +1,6 @@
 package com.bin.im.mapper;
 
-import com.bin.im.domain.entity.GroupMember;
+import com.bin.model.im.entity.GroupMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

@@ -1,6 +1,6 @@
 package com.bin.im.mapper;
 
-import com.bin.im.domain.entity.RoomFriend;
+import com.bin.model.im.entity.RoomFriend;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

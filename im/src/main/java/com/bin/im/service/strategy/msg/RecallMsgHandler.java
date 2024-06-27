@@ -1,12 +1,12 @@
 package com.bin.im.service.strategy.msg;
 
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.dto.ChatMsgRecallDTO;
-import com.bin.im.domain.entity.Message;
+import com.bin.model.im.dto.ChatMsgRecallDTO;
+import com.bin.model.im.entity.Message;
 import com.bin.model.user.entity.User;
-import com.bin.im.domain.entity.msg.MessageExtra;
-import com.bin.im.domain.entity.msg.MsgRecall;
-import com.bin.im.domain.enums.MessageTypeEnum;
+import com.bin.model.im.entity.msg.MessageExtra;
+import com.bin.model.im.entity.msg.MsgRecall;
+import com.bin.model.user.enums.MessageTypeEnum;
 import com.bin.im.event.MessageRecallEvent;
 import com.bin.im.service.cache.imp.MsgCache;
 import com.bin.im.service.cache.imp.UserCache;

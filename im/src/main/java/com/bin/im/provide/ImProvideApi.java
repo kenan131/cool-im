@@ -1,14 +1,14 @@
 package com.bin.im.provide;
 
-import com.bin.im.domain.entity.RoomFriend;
+import com.bin.im.dao.GroupMemberDao;
+import com.bin.model.im.entity.RoomFriend;
 import com.bin.im.service.ChatService;
 import com.bin.im.service.RoomService;
 import com.bin.im.service.adapter.MessageAdapter;
-import com.bin.interfaceapi.im.ImServiceApi;
+import com.bin.api.im.ImServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +23,14 @@ public class ImProvideApi implements ImServiceApi {
     private RoomService roomService;
 
     @Autowired
+    private GroupMemberDao groupMemberDao;
+
+    @Autowired
     private ChatService chatService;
 
     @Override
     public Map<Long, List<Long>> getMemberIdsByRoomIds(List<Long> roomIds) {
+
         return null;
     }
 
@@ -35,11 +39,11 @@ public class ImProvideApi implements ImServiceApi {
         RoomFriend roomFriend = roomService.createFriendRoom(uidList);
         //发送一条同意消息。。我们已经是好友了，开始聊天吧
         chatService.sendMsg(MessageAdapter.buildAgreeMsg(roomFriend.getRoomId()), uid);
-        return false;
+        return true;
     }
 
     @Override
     public void disableFriendRoom(List<Long> uidList) {
-
+        roomService.disableFriendRoom(uidList);
     }
 }

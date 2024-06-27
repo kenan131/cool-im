@@ -5,12 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.enums.ChatActiveStatusEnum;
-import com.bin.user.domain.enums.NormalOrNoEnum;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.enums.ChatActiveStatusEnum;
+import com.bin.model.user.enums.NormalOrNoEnum;
 import com.bin.user.mapper.UserMapper;
-import com.bin.user.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.user.domain.vo.response.common.CursorPageBaseResp;
 import com.bin.user.utils.CursorUtils;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +29,11 @@ public class UserDao extends ServiceImpl<UserMapper, User> {
 
     public User getByOpenId(String openId) {
         LambdaQueryWrapper<User> wrapper = new QueryWrapper<User>().lambda().eq(User::getOpenId, openId);
+        return getOne(wrapper);
+    }
+
+    public User getUserByName(String name){
+        LambdaQueryWrapper<User> wrapper = new QueryWrapper<User>().lambda().eq(User::getName, name);
         return getOne(wrapper);
     }
 

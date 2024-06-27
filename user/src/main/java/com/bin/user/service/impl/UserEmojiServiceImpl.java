@@ -2,11 +2,11 @@ package com.bin.user.service.impl;
 
 import com.bin.user.aspect.RedissonLock;
 import com.bin.user.dao.UserEmojiDao;
-import com.bin.user.domain.entity.UserEmoji;
-import com.bin.user.domain.vo.request.user.UserEmojiReq;
-import com.bin.user.domain.vo.response.common.ApiResult;
-import com.bin.user.domain.vo.response.common.IdRespVO;
-import com.bin.user.domain.vo.response.user.UserEmojiResp;
+import com.bin.model.user.entity.UserEmoji;
+import com.bin.model.user.vo.request.user.UserEmojiReq;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.common.vo.response.IdRespVO;
+import com.bin.model.user.vo.response.user.UserEmojiResp;
 import com.bin.user.service.UserEmojiService;
 import com.bin.user.utils.AssertUtil;
 import lombok.extern.slf4j.Slf4j;

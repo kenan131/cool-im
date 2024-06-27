@@ -1,10 +1,10 @@
 package com.bin.im.util;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.bin.im.domain.enums.ErrorEnum;
-import com.bin.im.exception.BusinessErrorEnum;
-import com.bin.im.exception.BusinessException;
-import com.bin.im.exception.CommonErrorEnum;
+import com.bin.model.user.enums.ErrorEnum;
+import com.bin.model.user.enums.BusinessErrorEnum;
+import com.bin.model.user.enums.BusinessException;
+import com.bin.model.user.enums.CommonErrorEnum;
 import org.hibernate.validator.HibernateValidator;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

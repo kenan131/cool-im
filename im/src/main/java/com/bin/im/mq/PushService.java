@@ -1,8 +1,11 @@
 package com.bin.im.mq;
 
-import com.bin.im.mq.dto.MQConstant;
-import com.bin.im.mq.dto.PushMessageDTO;
-import com.bin.im.mq.dto.WSBaseResp;
+import com.bin.api.router.dto.RouterMessageDto;
+import com.bin.api.router.dto.RouterMessageEnum;
+import com.bin.model.common.MQConstant;
+import com.bin.model.user.dto.PushMessageDTO;
+import com.bin.model.user.enums.WSBaseResp;
+import com.bin.transaction.service.MQProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +22,18 @@ public class PushService {
     private MQProducer mqProducer;
 
     public void sendPushMsg(WSBaseResp<?> msg, List<Long> uidList) {
-        mqProducer.sendMsg(MQConstant.PUSH_TOPIC, new PushMessageDTO(uidList, msg));
+        // 给路由层的dto
+        RouterMessageDto routerMessageDto = new RouterMessageDto(RouterMessageEnum.DiRECT_PUSH.getType(),uidList,null,msg);
+        mqProducer.sendMsg(MQConstant.PUSH_TOPIC, routerMessageDto);
     }
 
-    public void sendPushMsg(WSBaseResp<?> msg, Long uid) {
-        mqProducer.sendMsg(MQConstant.PUSH_TOPIC, new PushMessageDTO(uid, msg));
+    public void sendPushRoomMsg(WSBaseResp<?> msg, Long roomId) {
+        RouterMessageDto routerMessageDto = new RouterMessageDto(RouterMessageEnum.MESSAGE_AGGREGATION.getType(),null,roomId,msg);
+        mqProducer.sendMsg(MQConstant.PUSH_TOPIC, routerMessageDto);
+    }
+
+    public void sendSecureMsg(String topic, Object body, Object key) {
+        mqProducer.sendSecureMsg(topic,body,key);
     }
 
     public void sendPushMsg(WSBaseResp<?> msg) {

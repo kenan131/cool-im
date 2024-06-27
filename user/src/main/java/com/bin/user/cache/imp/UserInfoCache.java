@@ -2,7 +2,7 @@ package com.bin.user.cache.imp;
 
 import com.bin.user.cache.AbstractRedisStringCache;
 import com.bin.user.dao.UserDao;
-import com.bin.user.domain.entity.User;
+import com.bin.model.user.entity.User;
 import com.bin.user.utils.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

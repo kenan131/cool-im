@@ -1,13 +1,13 @@
 package com.bin.im.controller;
 
-import com.bin.im.domain.dto.MsgReadInfoDTO;
-import com.bin.im.domain.enums.BlackTypeEnum;
-import com.bin.im.domain.vo.request.*;
-import com.bin.im.domain.vo.response.ChatMessageReadResp;
-import com.bin.im.domain.vo.response.ChatMessageResp;
+import com.bin.model.im.dto.MsgReadInfoDTO;
+import com.bin.model.user.enums.BlackTypeEnum;
+import com.bin.model.im.vo.request.*;
+import com.bin.model.im.vo.response.ChatMessageReadResp;
+import com.bin.model.im.vo.response.ChatMessageResp;
 import com.bin.im.service.ChatService;
-import com.bin.im.domain.vo.response.common.ApiResult;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.im.service.cache.imp.UserCache;
 import com.bin.im.util.RequestHolder;
 import io.swagger.annotations.Api;

@@ -1,6 +1,6 @@
 package com.bin.im.event.listener;
 
-import com.bin.im.domain.dto.ChatMsgRecallDTO;
+import com.bin.model.im.dto.ChatMsgRecallDTO;
 import com.bin.im.event.MessageRecallEvent;
 import com.bin.im.mq.PushService;
 import com.bin.im.service.ChatService;

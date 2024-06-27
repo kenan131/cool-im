@@ -1,19 +1,19 @@
 package com.bin.im.service.impl;
 
 import com.bin.im.dao.*;
-import com.bin.im.domain.entity.Room;
-import com.bin.im.domain.entity.RoomGroup;
-import com.bin.im.domain.enums.GroupErrorEnum;
-import com.bin.im.domain.vo.request.admin.AdminAddReq;
-import com.bin.im.domain.vo.request.admin.AdminRevokeReq;
-import com.bin.im.domain.vo.request.member.MemberExitReq;
-import com.bin.im.domain.ws.WSMemberChange;
+import com.bin.model.im.entity.Room;
+import com.bin.model.im.entity.RoomGroup;
+import com.bin.model.user.enums.GroupErrorEnum;
+import com.bin.model.im.vo.request.admin.AdminAddReq;
+import com.bin.model.im.vo.request.admin.AdminRevokeReq;
+import com.bin.model.im.vo.request.member.MemberExitReq;
+import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.user.vo.response.ws.WSMemberChange;
 import com.bin.im.mq.PushService;
-import com.bin.im.mq.dto.WSBaseResp;
 import com.bin.im.service.IGroupMemberService;
 import com.bin.im.service.adapter.MemberAdapter;
 import com.bin.im.service.cache.imp.GroupMemberCache;
-import com.bin.im.exception.CommonErrorEnum;
+import com.bin.model.user.enums.CommonErrorEnum;
 import com.bin.im.util.AssertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import static com.bin.im.domain.common.GroupConst.MAX_MANAGE_COUNT;
+import static com.bin.model.user.dto.GroupConst.MAX_MANAGE_COUNT;
+
 
 /**
  * @Author Kkuil

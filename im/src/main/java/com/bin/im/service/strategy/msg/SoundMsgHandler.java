@@ -1,10 +1,10 @@
 package com.bin.im.service.strategy.msg;
 
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.entity.Message;
-import com.bin.im.domain.entity.msg.MessageExtra;
-import com.bin.im.domain.entity.msg.SoundMsgDTO;
-import com.bin.im.domain.enums.MessageTypeEnum;
+import com.bin.model.im.entity.Message;
+import com.bin.model.im.entity.msg.MessageExtra;
+import com.bin.model.im.entity.msg.SoundMsgDTO;
+import com.bin.model.user.enums.MessageTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

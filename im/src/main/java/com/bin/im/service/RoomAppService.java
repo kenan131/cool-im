@@ -1,15 +1,16 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.vo.request.*;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.request.member.MemberAddReq;
-import com.bin.im.domain.vo.request.member.MemberDelReq;
-import com.bin.im.domain.vo.request.member.MemberReq;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.vo.response.ChatRoomResp;
-import com.bin.im.domain.vo.response.MemberResp;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.im.domain.ws.ChatMemberResp;
+import com.bin.model.im.vo.request.*;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.im.vo.request.ChatMessageMemberReq;
+import com.bin.model.im.vo.request.member.MemberAddReq;
+import com.bin.model.im.vo.request.member.MemberDelReq;
+import com.bin.model.im.vo.request.member.MemberReq;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.im.vo.response.ChatRoomResp;
+import com.bin.model.im.vo.response.MemberResp;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
 
 import java.util.List;
 

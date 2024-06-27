@@ -3,7 +3,7 @@ package com.bin.im.service.cache.imp;
 import com.bin.im.dao.GroupMemberDao;
 import com.bin.im.dao.MessageDao;
 import com.bin.im.dao.RoomGroupDao;
-import com.bin.im.domain.entity.RoomGroup;
+import com.bin.model.im.entity.RoomGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

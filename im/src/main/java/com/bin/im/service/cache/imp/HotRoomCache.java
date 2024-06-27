@@ -1,8 +1,8 @@
 package com.bin.im.service.cache.imp;
 
 import cn.hutool.core.lang.Pair;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.im.util.CursorUtils;
 import com.bin.im.util.RedisKey;
 import com.bin.im.util.RedisUtils;

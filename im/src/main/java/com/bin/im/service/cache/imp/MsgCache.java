@@ -1,7 +1,7 @@
 package com.bin.im.service.cache.imp;
 
 import com.bin.im.dao.MessageDao;
-import com.bin.im.domain.entity.Message;
+import com.bin.model.im.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

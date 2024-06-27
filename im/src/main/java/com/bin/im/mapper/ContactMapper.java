@@ -1,7 +1,7 @@
 package com.bin.im.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bin.im.domain.entity.Contact;
+import com.bin.model.im.entity.Contact;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;

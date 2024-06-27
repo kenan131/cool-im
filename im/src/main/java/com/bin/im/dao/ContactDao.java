@@ -2,14 +2,14 @@ package com.bin.im.dao;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.im.domain.entity.Contact;
-import com.bin.im.domain.entity.Message;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.im.entity.Message;
 import com.bin.im.mapper.ContactMapper;
 import com.bin.im.util.CursorUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.bin.model.im.entity.Contact;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

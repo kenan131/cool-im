@@ -1,7 +1,7 @@
 package com.bin.user.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.UserRole;
+import com.bin.model.user.entity.UserRole;
 import com.bin.user.mapper.UserRoleMapper;
 import org.springframework.stereotype.Service;
 

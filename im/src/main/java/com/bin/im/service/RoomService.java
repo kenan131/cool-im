@@ -1,7 +1,7 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.entity.RoomFriend;
-import com.bin.im.domain.entity.RoomGroup;
+import com.bin.model.im.entity.RoomFriend;
+import com.bin.model.im.entity.RoomGroup;
 
 import java.util.List;
 

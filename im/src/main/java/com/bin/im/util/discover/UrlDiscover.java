@@ -1,7 +1,7 @@
 package com.bin.im.util.discover;
 
 import cn.hutool.core.date.StopWatch;
-import com.bin.im.domain.common.UrlInfo;
+import com.bin.model.user.dto.UrlInfo;
 import org.jsoup.nodes.Document;
 import org.springframework.lang.Nullable;
 import java.util.Map;

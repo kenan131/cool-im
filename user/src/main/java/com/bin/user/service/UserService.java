@@ -1,11 +1,12 @@
 package com.bin.user.service;
 
-import com.bin.user.domain.dto.ItemInfoDTO;
-import com.bin.user.domain.dto.SummeryInfoDTO;
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.vo.request.user.*;
-import com.bin.user.domain.vo.response.user.BadgeResp;
-import com.bin.user.domain.vo.response.user.UserInfoResp;
+import com.bin.model.user.dto.ItemInfoDTO;
+import com.bin.model.user.dto.SummeryInfoDTO;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.vo.request.user.*;
+import com.bin.model.user.vo.response.user.BadgeResp;
+import com.bin.model.user.vo.response.user.LoginResp;
+import com.bin.model.user.vo.response.user.UserInfoResp;
 
 import java.util.List;
 
@@ -18,6 +19,12 @@ import java.util.List;
  * @since 2023-03-19
  */
 public interface UserService {
+
+
+    LoginResp login(LoginReqDto dto);
+
+
+    Long getUserIdByToken(String token);
 
     /**
      * 获取前端展示信息

@@ -1,7 +1,7 @@
 package com.bin.im.dao;
 
-import com.bin.im.domain.entity.MessageMark;
-import com.bin.im.domain.enums.NormalOrNoEnum;
+import com.bin.model.im.entity.MessageMark;
+import com.bin.model.user.enums.NormalOrNoEnum;
 import com.bin.im.mapper.MessageMarkMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

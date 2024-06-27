@@ -1,7 +1,7 @@
 package com.bin.user.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.ItemConfig;
+import com.bin.model.user.entity.ItemConfig;
 import com.bin.user.mapper.ItemConfigMapper;
 import org.springframework.stereotype.Service;
 

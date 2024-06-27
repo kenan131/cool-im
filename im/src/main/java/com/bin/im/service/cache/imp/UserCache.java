@@ -2,12 +2,11 @@ package com.bin.im.service.cache.imp;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Pair;
-import com.bin.im.api.IBlackService;
-import com.bin.im.api.IUserService;
+import com.bin.api.user.UserServiceApi;
 import com.bin.model.user.entity.Black;
 import com.bin.model.user.entity.User;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.im.util.CursorUtils;
 import com.bin.im.util.RedisKey;
 import com.bin.im.util.RedisUtils;
@@ -27,11 +26,8 @@ import java.util.stream.Collectors;
 @Component
 public class UserCache {
 
-    @DubboReference(interfaceClass = IUserService.class)
-    private IUserService IUserService;
-
-    @DubboReference(interfaceClass = IBlackService.class)
-    private IBlackService IBlackService;
+    @DubboReference(interfaceClass = UserServiceApi.class,check = false)
+    private UserServiceApi userServiceApi;
 
 
     public Long getOnlineNum() {
@@ -124,7 +120,7 @@ public class UserCache {
         List<Long> needLoadUidList = uids.stream().filter(a -> !map.containsKey(a)).collect(Collectors.toList());
         if (CollUtil.isNotEmpty(needLoadUidList)) {
             //批量load
-            List<User> needLoadUserList = IUserService.listByIds(needLoadUidList);
+            List<User> needLoadUserList = userServiceApi.listByIds(needLoadUidList);
             Map<String, User> redisMap = needLoadUserList.stream().collect(Collectors.toMap(a -> RedisKey.getKey(RedisKey.USER_INFO_STRING, a.getId()), Function.identity()));
             RedisUtils.mset(redisMap, 5 * 60);
             //加载回redis
@@ -147,14 +143,14 @@ public class UserCache {
 
     @Cacheable(cacheNames = "user", key = "'blackList'")
     public Map<Integer, Set<String>> getBlackMap() {
-        Map<Integer, List<Black>> collect = IBlackService.list().stream().collect(Collectors.groupingBy(Black::getType));
+        Map<Integer, List<Black>> collect = userServiceApi.list().stream().collect(Collectors.groupingBy(Black::getType));
         Map<Integer, Set<String>> result = new HashMap<>(collect.size());
         for (Map.Entry<Integer, List<Black>> entry : collect.entrySet()) {
             result.put(entry.getKey(), entry.getValue().stream().map(Black::getTarget).collect(Collectors.toSet()));
         }
         return result;
     }
-//
+
 //    @CacheEvict(cacheNames = "user", key = "'blackList'")
 //    public Map<Integer, Set<String>> evictBlackMap() {
 //        return null;
@@ -162,7 +158,7 @@ public class UserCache {
 //
 //    @Cacheable(cacheNames = "user", key = "'roles'+#uid")
 //    public Set<Long> getRoleSet(Long uid) {
-//        List<UserRole> userRoles = userRoleDao.listByUid(uid);
+//        List<UserRole> userRoles = userServiceApi.listByUid(uid);
 //        return userRoles.stream()
 //                .map(UserRole::getRoleId)
 //                .collect(Collectors.toSet());

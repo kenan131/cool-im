@@ -1,7 +1,7 @@
 package com.bin.im.event;
 
-import com.bin.im.domain.entity.GroupMember;
-import com.bin.im.domain.entity.RoomGroup;
+import com.bin.model.im.entity.GroupMember;
+import com.bin.model.im.entity.RoomGroup;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

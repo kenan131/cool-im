@@ -2,25 +2,25 @@ package com.bin.user.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.bin.interfaceapi.im.ImServiceApi;
+import com.bin.api.im.ImServiceApi;
 import com.bin.user.aspect.RedissonLock;
 import com.bin.user.dao.UserApplyDao;
 import com.bin.user.dao.UserDao;
 import com.bin.user.dao.UserFriendDao;
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.entity.UserApply;
-import com.bin.user.domain.entity.UserFriend;
-import com.bin.user.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.user.domain.vo.request.common.PageBaseReq;
-import com.bin.user.domain.vo.request.friend.FriendApplyReq;
-import com.bin.user.domain.vo.request.friend.FriendApproveReq;
-import com.bin.user.domain.vo.request.friend.FriendCheckReq;
-import com.bin.user.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.user.domain.vo.response.common.PageBaseResp;
-import com.bin.user.domain.vo.response.friend.FriendApplyResp;
-import com.bin.user.domain.vo.response.friend.FriendCheckResp;
-import com.bin.user.domain.vo.response.friend.FriendResp;
-import com.bin.user.domain.vo.response.friend.FriendUnreadResp;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.entity.UserApply;
+import com.bin.model.user.entity.UserFriend;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.user.dto.PageBaseReq;
+import com.bin.model.user.vo.request.friend.FriendApplyReq;
+import com.bin.model.user.vo.request.friend.FriendApproveReq;
+import com.bin.model.user.vo.request.friend.FriendCheckReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.common.vo.response.PageBaseResp;
+import com.bin.model.user.vo.response.friend.FriendApplyResp;
+import com.bin.model.user.vo.response.friend.FriendCheckResp;
+import com.bin.model.user.vo.response.friend.FriendResp;
+import com.bin.model.user.vo.response.friend.FriendUnreadResp;
 import com.bin.user.event.UserApplyEvent;
 import com.bin.user.service.FriendService;
 import com.bin.user.utils.AssertUtil;
@@ -37,7 +37,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.bin.user.domain.enums.ApplyStatusEnum.WAIT_APPROVAL;
+import static com.bin.model.user.enums.ApplyStatusEnum.WAIT_APPROVAL;
 
 @Slf4j
 @Service
@@ -156,7 +156,7 @@ public class FriendServiceImpl implements FriendService {
         userApplyDao.agree(request.getApplyId());
         //创建双方好友关系
         createFriend(uid, userApply.getUid());
-        // 调用im服务创建房间号 并发送好友同意申请通知。   TODO 事务相关
+        // 调用im服务创建房间号 并发送好友同意申请通知。   TODO 事务问题
         imServiceApi.createFriendRoom(Arrays.asList(uid, userApply.getUid()),uid);
     }
 
@@ -176,7 +176,7 @@ public class FriendServiceImpl implements FriendService {
         }
         List<Long> friendRecordIds = userFriends.stream().map(UserFriend::getId).collect(Collectors.toList());
         userFriendDao.removeByIds(friendRecordIds);
-        //禁用房间  TODO  dubbo调用事务相关问题。
+        //禁用房间  TODO  微服务事务相关问题。
         imServiceApi.disableFriendRoom(Arrays.asList(uid, friendUid));
     }
 

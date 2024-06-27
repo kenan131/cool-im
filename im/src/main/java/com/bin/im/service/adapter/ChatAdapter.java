@@ -1,9 +1,9 @@
 package com.bin.im.service.adapter;
 
-import com.bin.im.domain.entity.*;
-import com.bin.im.domain.enums.HotFlagEnum;
-import com.bin.im.domain.enums.NormalOrNoEnum;
-import com.bin.im.domain.enums.RoomTypeEnum;
+import com.bin.model.im.entity.*;
+import com.bin.model.user.enums.HotFlagEnum;
+import com.bin.model.user.enums.NormalOrNoEnum;
+import com.bin.model.user.enums.RoomTypeEnum;
 import com.bin.model.user.entity.User;
 
 import java.util.Collection;

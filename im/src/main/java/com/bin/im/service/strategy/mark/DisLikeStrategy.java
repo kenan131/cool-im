@@ -1,6 +1,6 @@
 package com.bin.im.service.strategy.mark;
 
-import com.bin.im.domain.enums.MessageMarkTypeEnum;
+import com.bin.model.user.enums.MessageMarkTypeEnum;
 import org.springframework.stereotype.Component;
 
 /**

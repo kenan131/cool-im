@@ -1,6 +1,6 @@
 package com.bin.im.dao;
 
-import com.bin.im.domain.entity.Room;
+import com.bin.model.im.entity.Room;
 import com.bin.im.mapper.RoomMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

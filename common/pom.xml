@@ -17,7 +17,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>interfaceApi</module>
+        <module>interface</module>
+        <module>transaction</module>
     </modules>
 
     <properties>

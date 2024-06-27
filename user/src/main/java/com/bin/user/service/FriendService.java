@@ -1,16 +1,16 @@
 package com.bin.user.service;
 
-import com.bin.user.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.user.domain.vo.request.common.PageBaseReq;
-import com.bin.user.domain.vo.request.friend.FriendApplyReq;
-import com.bin.user.domain.vo.request.friend.FriendApproveReq;
-import com.bin.user.domain.vo.request.friend.FriendCheckReq;
-import com.bin.user.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.user.domain.vo.response.common.PageBaseResp;
-import com.bin.user.domain.vo.response.friend.FriendApplyResp;
-import com.bin.user.domain.vo.response.friend.FriendCheckResp;
-import com.bin.user.domain.vo.response.friend.FriendResp;
-import com.bin.user.domain.vo.response.friend.FriendUnreadResp;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.user.dto.PageBaseReq;
+import com.bin.model.user.vo.request.friend.FriendApplyReq;
+import com.bin.model.user.vo.request.friend.FriendApproveReq;
+import com.bin.model.user.vo.request.friend.FriendCheckReq;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.common.vo.response.PageBaseResp;
+import com.bin.model.user.vo.response.friend.FriendApplyResp;
+import com.bin.model.user.vo.response.friend.FriendCheckResp;
+import com.bin.model.user.vo.response.friend.FriendResp;
+import com.bin.model.user.vo.response.friend.FriendUnreadResp;
 
 /**
  * @author : limeng

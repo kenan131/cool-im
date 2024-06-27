@@ -1,8 +1,8 @@
 package com.bin.access.provide;
 
 import com.bin.access.service.WebSocketService;
-import com.bin.interfaceapi.access.AccessServiceApi;
-import com.bin.interfaceapi.access.dto.PushMessageDTO;
+import com.bin.api.access.AccessServiceApi;
+import com.bin.model.user.dto.PushMessageDTO;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

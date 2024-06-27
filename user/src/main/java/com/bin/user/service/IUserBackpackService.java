@@ -1,6 +1,6 @@
 package com.bin.user.service;
 
-import com.bin.user.domain.enums.IdempotentEnum;
+import com.bin.model.user.enums.IdempotentEnum;
 
 /**
  * <p>

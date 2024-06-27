@@ -3,8 +3,8 @@ package com.bin.user.dao;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.UserBackpack;
-import com.bin.user.domain.enums.YesOrNoEnum;
+import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.user.entity.UserBackpack;
 import com.bin.user.mapper.UserBackpackMapper;
 import org.springframework.stereotype.Service;
 

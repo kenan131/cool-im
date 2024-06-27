@@ -1,9 +1,10 @@
 package com.bin.access.service;
 
-import com.alibaba.cloud.nacos.registry.NacosServiceRegistry;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
+import com.bin.api.router.RouterServiceApi;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +20,16 @@ import java.util.Properties;
 @Component
 public class NettyServerRegister {
     private NamingService namingService;
-
     @Value("${spring.cloud.nacos.discovery.server-addr}")
     private String serverAddr = "";
     @Value("${spring.application.name}")
     String serviceName;
     @Value("${im.server.port}")
     Integer port;
-
     private String localIp = "";
+
+    @DubboReference(check = false)
+    private RouterServiceApi routerServiceApi;
 
     @PostConstruct
     public void init() throws NacosException, UnknownHostException {
@@ -56,6 +58,8 @@ public class NettyServerRegister {
             // 注销服务
             namingService.deregisterInstance(serviceName, localIp, port);
             System.out.println("Service deregistered: " + serviceName);
+            // 服务下线，通知路由服务
+            routerServiceApi.ServerOff(localIp);
         } catch (Exception e) {
             e.printStackTrace();
         }

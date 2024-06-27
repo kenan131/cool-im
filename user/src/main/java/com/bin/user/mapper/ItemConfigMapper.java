@@ -1,7 +1,7 @@
 package com.bin.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bin.user.domain.entity.ItemConfig;
+import com.bin.model.user.entity.ItemConfig;
 
 /**
  * <p>

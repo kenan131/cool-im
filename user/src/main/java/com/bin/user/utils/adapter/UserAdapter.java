@@ -2,12 +2,12 @@ package com.bin.user.utils.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.bin.user.domain.entity.ItemConfig;
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.entity.UserBackpack;
-import com.bin.user.domain.enums.YesOrNoEnum;
-import com.bin.user.domain.vo.response.user.BadgeResp;
-import com.bin.user.domain.vo.response.user.UserInfoResp;
+import com.bin.model.user.entity.ItemConfig;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.entity.UserBackpack;
+import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.user.vo.response.user.BadgeResp;
+import com.bin.model.user.vo.response.user.UserInfoResp;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;

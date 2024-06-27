@@ -1,21 +1,22 @@
 package com.bin.im.controller;
 
 
-import com.bin.im.domain.vo.request.*;
-import com.bin.im.domain.vo.request.admin.AdminAddReq;
-import com.bin.im.domain.vo.request.admin.AdminRevokeReq;
-import com.bin.im.domain.vo.request.member.MemberAddReq;
-import com.bin.im.domain.vo.request.member.MemberDelReq;
-import com.bin.im.domain.vo.request.member.MemberExitReq;
-import com.bin.im.domain.vo.request.member.MemberReq;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.vo.response.MemberResp;
-import com.bin.im.domain.ws.ChatMemberResp;
+import com.bin.model.im.vo.request.*;
+import com.bin.model.im.vo.request.admin.AdminAddReq;
+import com.bin.model.im.vo.request.admin.AdminRevokeReq;
+import com.bin.model.im.vo.request.member.MemberAddReq;
+import com.bin.model.im.vo.request.member.MemberDelReq;
+import com.bin.model.im.vo.request.member.MemberExitReq;
+import com.bin.model.im.vo.request.member.MemberReq;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.im.vo.response.MemberResp;
+import com.bin.model.user.dto.IdReqVO;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
 import com.bin.im.service.IGroupMemberService;
 import com.bin.im.service.RoomAppService;
-import com.bin.im.domain.vo.response.common.ApiResult;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.im.domain.vo.response.common.IdRespVO;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.common.vo.response.IdRespVO;
 import com.bin.im.util.RequestHolder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

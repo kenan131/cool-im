@@ -1,7 +1,7 @@
 package com.bin.user.dao;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bin.user.domain.entity.Black;
+import com.bin.model.user.entity.Black;
 import com.bin.user.mapper.BlackMapper;
 import org.springframework.stereotype.Service;
 

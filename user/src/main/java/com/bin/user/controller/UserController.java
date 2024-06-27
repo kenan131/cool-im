@@ -1,12 +1,12 @@
 package com.bin.user.controller;
 
-import com.bin.user.domain.dto.ItemInfoDTO;
-import com.bin.user.domain.dto.SummeryInfoDTO;
-import com.bin.user.domain.enums.RoleEnum;
-import com.bin.user.domain.vo.request.user.*;
-import com.bin.user.domain.vo.response.common.ApiResult;
-import com.bin.user.domain.vo.response.user.BadgeResp;
-import com.bin.user.domain.vo.response.user.UserInfoResp;
+import com.bin.model.user.dto.ItemInfoDTO;
+import com.bin.model.user.dto.SummeryInfoDTO;
+import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.user.vo.request.user.*;
+import com.bin.model.user.vo.response.user.UserInfoResp;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.user.vo.response.user.BadgeResp;
 import com.bin.user.service.RoleService;
 import com.bin.user.service.UserService;
 import com.bin.user.utils.AssertUtil;

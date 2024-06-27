@@ -1,20 +1,20 @@
 package com.bin.user.utils.adapter;
 
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.entity.UserApply;
-import com.bin.user.domain.entity.UserFriend;
-import com.bin.user.domain.vo.request.friend.FriendApplyReq;
-import com.bin.user.domain.vo.response.friend.FriendApplyResp;
-import com.bin.user.domain.vo.response.friend.FriendResp;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.entity.UserApply;
+import com.bin.model.user.entity.UserFriend;
+import com.bin.model.user.vo.request.friend.FriendApplyReq;
+import com.bin.model.user.vo.response.friend.FriendApplyResp;
+import com.bin.model.user.vo.response.friend.FriendResp;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.bin.user.domain.enums.ApplyReadStatusEnum.UNREAD;
-import static com.bin.user.domain.enums.ApplyStatusEnum.WAIT_APPROVAL;
-import static com.bin.user.domain.enums.ApplyTypeEnum.ADD_FRIEND;
+import static com.bin.model.user.enums.ApplyReadStatusEnum.UNREAD;
+import static com.bin.model.user.enums.ApplyStatusEnum.WAIT_APPROVAL;
+import static com.bin.model.user.enums.ApplyTypeEnum.ADD_FRIEND;
 
 /**
  * Description: 好友适配器

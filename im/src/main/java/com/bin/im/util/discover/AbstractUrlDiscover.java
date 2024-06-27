@@ -2,7 +2,7 @@ package com.bin.im.util.discover;
 
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
-import com.bin.im.domain.common.UrlInfo;
+import com.bin.model.user.dto.UrlInfo;
 import com.bin.im.util.FutureUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;

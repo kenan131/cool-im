@@ -1,7 +1,7 @@
 package com.bin.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bin.user.domain.entity.SensitiveWord;
+import com.bin.user.utils.sensitive.domian.SensitiveWord;
 
 /**
  * 敏感词Mapper

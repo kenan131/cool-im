@@ -1,6 +1,6 @@
 package com.bin.im.mapper;
 
-import com.bin.im.domain.entity.Room;
+import com.bin.model.im.entity.Room;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

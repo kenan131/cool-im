@@ -1,6 +1,6 @@
 package com.bin.im.dao;
 
-import com.bin.im.domain.entity.WxMsg;
+import com.bin.model.im.entity.WxMsg;
 import com.bin.im.mapper.WxMsgMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

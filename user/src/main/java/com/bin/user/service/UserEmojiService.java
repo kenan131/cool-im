@@ -1,9 +1,9 @@
 package com.bin.user.service;
 
-import com.bin.user.domain.vo.request.user.UserEmojiReq;
-import com.bin.user.domain.vo.response.common.ApiResult;
-import com.bin.user.domain.vo.response.common.IdRespVO;
-import com.bin.user.domain.vo.response.user.UserEmojiResp;
+import com.bin.model.user.vo.request.user.UserEmojiReq;
+import com.bin.model.common.vo.response.ApiResult;
+import com.bin.model.common.vo.response.IdRespVO;
+import com.bin.model.user.vo.response.user.UserEmojiResp;
 
 import java.util.List;
 

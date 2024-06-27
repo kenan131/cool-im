@@ -1,13 +1,13 @@
 package com.bin.im.service.adapter;
 
-import com.bin.im.domain.entity.GroupMember;
+import com.bin.model.im.entity.GroupMember;
 import com.bin.model.user.entity.User;
-import com.bin.im.domain.enums.GroupRoleEnum;
-import com.bin.im.domain.enums.WSRespTypeEnum;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.ws.ChatMemberResp;
-import com.bin.im.domain.ws.WSMemberChange;
-import com.bin.im.mq.dto.WSBaseResp;
+import com.bin.model.user.enums.GroupRoleEnum;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.user.enums.WSRespTypeEnum;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
+import com.bin.model.user.vo.response.ws.WSMemberChange;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.bin.im.domain.ws.WSMemberChange.CHANGE_TYPE_ADD;
-import static com.bin.im.domain.ws.WSMemberChange.CHANGE_TYPE_REMOVE;
+import static com.bin.model.user.vo.response.ws.WSMemberChange.CHANGE_TYPE_ADD;
+import static com.bin.model.user.vo.response.ws.WSMemberChange.CHANGE_TYPE_REMOVE;
 
 /**
  * Description: 成员适配器

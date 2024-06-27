@@ -1,14 +1,14 @@
 package com.bin.im.service.impl;
 
-import com.bin.im.api.IUserService;
 import com.bin.im.dao.GroupMemberDao;
 import com.bin.im.dao.RoomDao;
 import com.bin.im.dao.RoomFriendDao;
 import com.bin.im.dao.RoomGroupDao;
-import com.bin.im.domain.entity.*;
-import com.bin.im.domain.enums.GroupRoleEnum;
-import com.bin.im.domain.enums.NormalOrNoEnum;
-import com.bin.im.domain.enums.RoomTypeEnum;
+import com.bin.api.user.UserServiceApi;
+import com.bin.model.im.entity.*;
+import com.bin.model.user.enums.GroupRoleEnum;
+import com.bin.model.user.enums.NormalOrNoEnum;
+import com.bin.model.user.enums.RoomTypeEnum;
 import com.bin.im.service.RoomService;
 import com.bin.im.service.adapter.ChatAdapter;
 import com.bin.im.util.AssertUtil;
@@ -36,8 +36,8 @@ public class RoomServiceImpl implements RoomService {
     private RoomDao roomDao;
     @Autowired
     private GroupMemberDao groupMemberDao;
-    @DubboReference(interfaceClass = IUserService.class)
-    private IUserService IUserService;
+    @DubboReference(interfaceClass = UserServiceApi.class,check = false)
+    private UserServiceApi userServiceApi;
     @Autowired
     private RoomGroupDao roomGroupDao;
 
@@ -77,7 +77,7 @@ public class RoomServiceImpl implements RoomService {
     public RoomGroup createGroupRoom(Long uid) {
         List<GroupMember> selfGroup = groupMemberDao.getSelfGroup(uid);
         AssertUtil.isEmpty(selfGroup, "每个人只能创建一个群");
-        User user = IUserService.get(uid);
+        User user = userServiceApi.get(uid);
         Room room = createRoom(RoomTypeEnum.GROUP);
         //插入群
         RoomGroup roomGroup = ChatAdapter.buildGroupRoom(user, room.getId());

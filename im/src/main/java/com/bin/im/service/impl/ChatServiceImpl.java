@@ -5,23 +5,25 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Pair;
-import com.bin.im.api.IRoleService;
-import com.bin.im.api.IUserService;
 import com.bin.im.aspect.annotation.RedissonLock;
 import com.bin.im.dao.*;
-import com.bin.im.domain.dto.MsgReadInfoDTO;
-import com.bin.im.domain.entity.*;
-import com.bin.im.domain.enums.*;
+import com.bin.api.user.UserServiceApi;
+import com.bin.model.user.enums.ChatActiveStatusEnum;
+import com.bin.model.user.enums.MessageMarkActTypeEnum;
+import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.user.enums.NormalOrNoEnum;
+import com.bin.model.im.dto.MsgReadInfoDTO;
+import com.bin.model.im.entity.*;
 import com.bin.im.event.MessageSendEvent;
-import com.bin.im.domain.vo.request.*;
-import com.bin.im.domain.vo.request.common.CursorPageBaseReq;
-import com.bin.im.domain.vo.request.member.MemberReq;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.vo.response.ChatMemberStatisticResp;
-import com.bin.im.domain.vo.response.ChatMessageReadResp;
-import com.bin.im.domain.vo.response.ChatMessageResp;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.im.domain.ws.ChatMemberResp;
+import com.bin.model.im.vo.request.*;
+import com.bin.model.user.dto.CursorPageBaseReq;
+import com.bin.model.im.vo.request.member.MemberReq;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.im.vo.response.ChatMemberStatisticResp;
+import com.bin.model.im.vo.response.ChatMessageReadResp;
+import com.bin.model.im.vo.response.ChatMessageResp;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
 import com.bin.im.service.ContactService;
 import com.bin.im.service.adapter.MemberAdapter;
 import com.bin.im.service.adapter.MessageAdapter;
@@ -61,8 +63,8 @@ public class ChatServiceImpl implements ChatService {
     public static final long ROOM_GROUP_ID = 1L;
     @Autowired
     private MessageDao messageDao;
-    @DubboReference(interfaceClass = com.bin.im.api.IUserService.class)
-    private IUserService IUserService;
+    @DubboReference(check = false)
+    private UserServiceApi userServiceApi;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
     @Autowired
@@ -71,8 +73,6 @@ public class ChatServiceImpl implements ChatService {
     private MessageMarkDao messageMarkDao;
     @Autowired
     private RoomFriendDao roomFriendDao;
-    @DubboReference(interfaceClass = com.bin.im.api.IRoleService.class)
-    private IRoleService iRoleService;
     @Autowired
     private RecallMsgHandler recallMsgHandler;
     @Autowired
@@ -139,18 +139,18 @@ public class ChatServiceImpl implements ChatService {
         List<ChatMemberResp> resultList = new ArrayList<>();//最终列表
         Boolean isLast = Boolean.FALSE;
         if (activeStatusEnum == ChatActiveStatusEnum.ONLINE) {//在线列表
-            CursorPageBaseResp<User> cursorPage = IUserService.getCursorPage(memberUidList, new CursorPageBaseReq(request.getPageSize(), timeCursor), ChatActiveStatusEnum.ONLINE);
+            CursorPageBaseResp<User> cursorPage = userServiceApi.getCursorPage(memberUidList, new CursorPageBaseReq(request.getPageSize(), timeCursor), ChatActiveStatusEnum.ONLINE);
             resultList.addAll(MemberAdapter.buildMember(cursorPage.getList()));//添加在线列表
             if (cursorPage.getIsLast()) {//如果是最后一页,从离线列表再补点数据
                 activeStatusEnum = ChatActiveStatusEnum.OFFLINE;
                 Integer leftSize = request.getPageSize() - cursorPage.getList().size();
-                cursorPage = IUserService.getCursorPage(memberUidList, new CursorPageBaseReq(leftSize, null), ChatActiveStatusEnum.OFFLINE);
+                cursorPage = userServiceApi.getCursorPage(memberUidList, new CursorPageBaseReq(leftSize, null), ChatActiveStatusEnum.OFFLINE);
                 resultList.addAll(MemberAdapter.buildMember(cursorPage.getList()));//添加离线线列表
             }
             timeCursor = cursorPage.getCursor();
             isLast = cursorPage.getIsLast();
         } else if (activeStatusEnum == ChatActiveStatusEnum.OFFLINE) {//离线列表
-            CursorPageBaseResp<User> cursorPage = IUserService.getCursorPage(memberUidList, new CursorPageBaseReq(request.getPageSize(), timeCursor), ChatActiveStatusEnum.OFFLINE);
+            CursorPageBaseResp<User> cursorPage = userServiceApi.getCursorPage(memberUidList, new CursorPageBaseReq(request.getPageSize(), timeCursor), ChatActiveStatusEnum.OFFLINE);
             resultList.addAll(MemberAdapter.buildMember(cursorPage.getList()));//添加离线线列表
             timeCursor = cursorPage.getCursor();
             isLast = cursorPage.getIsLast();
@@ -224,7 +224,7 @@ public class ChatServiceImpl implements ChatService {
     @Cacheable(cacheNames = "member", key = "'memberList.'+#req.roomId")
     public List<ChatMemberListResp> getMemberList(ChatMessageMemberReq req) {
         if (Objects.equals(1L, req.getRoomId())) {//大群聊可看见所有人
-            return IUserService.getMemberList()
+            return userServiceApi.getMemberList()
                     .stream()
                     .map(a -> {
                         ChatMemberListResp resp = new ChatMemberListResp();
@@ -283,7 +283,7 @@ public class ChatServiceImpl implements ChatService {
     private void checkRecall(Long uid, Message message) {
         AssertUtil.isNotEmpty(message, "消息有误");
         AssertUtil.notEqual(message.getType(), MessageTypeEnum.RECALL.getType(), "消息无法撤回");
-        boolean hasPower = iRoleService.hasPower(uid, RoleEnum.CHAT_MANAGER);
+        boolean hasPower = userServiceApi.hasPower(uid, com.bin.model.user.enums.RoleEnum.CHAT_MANAGER);
         if (hasPower) {
             return;
         }

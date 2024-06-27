@@ -1,6 +1,6 @@
 package com.bin.user.event;
 
-import com.bin.user.domain.entity.User;
+import com.bin.model.user.entity.User;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

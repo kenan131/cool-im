@@ -46,7 +46,6 @@ public class LoginServiceImpl implements LoginService {
         return Objects.equals(token, realToken);//有可能token失效了，需要校验是不是和最新token一致
     }
 
-    @Async
     @Override
     public void renewalTokenIfNecessary(String token) {
         Long uid = jwtUtils.getUidOrNull(token);
@@ -80,9 +79,5 @@ public class LoginServiceImpl implements LoginService {
     public Long getValidUid(String token) {
         boolean verify = verify(token);
         return verify ? jwtUtils.getUidOrNull(token) : null;
-    }
-
-    public static void main(String[] args) {
-        System.out.println();
     }
 }

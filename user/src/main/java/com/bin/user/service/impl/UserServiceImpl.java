@@ -1,6 +1,9 @@
 package com.bin.user.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.bin.api.access.dto.WSAdapter;
+import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.user.vo.response.user.LoginResp;
 import com.bin.user.cache.imp.ItemCache;
 import com.bin.user.cache.imp.UserCache;
 import com.bin.user.cache.imp.UserSummaryCache;
@@ -8,19 +11,21 @@ import com.bin.user.dao.BlackDao;
 import com.bin.user.dao.ItemConfigDao;
 import com.bin.user.dao.UserBackpackDao;
 import com.bin.user.dao.UserDao;
-import com.bin.user.domain.dto.ItemInfoDTO;
-import com.bin.user.domain.dto.SummeryInfoDTO;
-import com.bin.user.domain.entity.Black;
-import com.bin.user.domain.entity.ItemConfig;
-import com.bin.user.domain.entity.User;
-import com.bin.user.domain.entity.UserBackpack;
-import com.bin.user.domain.enums.BlackTypeEnum;
-import com.bin.user.domain.enums.ItemEnum;
-import com.bin.user.domain.enums.ItemTypeEnum;
-import com.bin.user.domain.vo.request.user.*;
-import com.bin.user.domain.vo.response.user.BadgeResp;
-import com.bin.user.domain.vo.response.user.UserInfoResp;
+import com.bin.model.user.dto.ItemInfoDTO;
+import com.bin.model.user.dto.SummeryInfoDTO;
+import com.bin.model.user.entity.Black;
+import com.bin.model.user.entity.ItemConfig;
+import com.bin.model.user.entity.User;
+import com.bin.model.user.entity.UserBackpack;
+import com.bin.model.user.enums.BlackTypeEnum;
+import com.bin.model.user.enums.ItemEnum;
+import com.bin.model.user.enums.ItemTypeEnum;
+import com.bin.model.user.vo.request.user.*;
+import com.bin.model.user.vo.response.user.BadgeResp;
+import com.bin.model.user.vo.response.user.UserInfoResp;
 import com.bin.user.event.UserBlackEvent;
+import com.bin.user.service.LoginService;
+import com.bin.user.service.RoleService;
 import com.bin.user.service.UserService;
 import com.bin.user.utils.AssertUtil;
 import com.bin.user.utils.adapter.UserAdapter;
@@ -64,6 +69,28 @@ public class UserServiceImpl implements UserService {
     private UserSummaryCache userSummaryCache;
     @Autowired
     private SensitiveWordBs sensitiveWordBs;
+    @Autowired
+    private LoginService LoginServiceImpl;
+    @Autowired
+    private RoleService roleService;
+
+    @Override
+    public LoginResp login(LoginReqDto dto) {
+        User user = userDao.getUserByName(dto.getUserName());
+        if(user == null){
+            return LoginResp.buildFailResp("账号有误！");
+        }
+        if(!user.getPassword().equals(dto.getPassWord())){
+            return LoginResp.buildFailResp("密码有误！");
+        }
+        String token = LoginServiceImpl.login(user.getId());
+        boolean hasPower = roleService.hasPower(user.getId(), RoleEnum.CHAT_MANAGER);
+        return LoginResp.buildSuccessResp(WSAdapter.buildLoginSuccessResp(user,token,hasPower));
+    }
+    @Override
+    public Long getUserIdByToken(String token){
+        return LoginServiceImpl.getValidUid(token);
+    }
 
     @Override
     public UserInfoResp getUserInfo(Long uid) {
@@ -123,6 +150,8 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
 //        applicationEventPublisher.publishEvent(new UserRegisterEvent(this, user));
     }
+
+
 
     @Override
     public void black(BlackReq req) {

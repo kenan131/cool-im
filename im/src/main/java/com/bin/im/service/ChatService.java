@@ -1,15 +1,17 @@
 package com.bin.im.service;
 
-import com.bin.im.domain.dto.MsgReadInfoDTO;
-import com.bin.im.domain.entity.Message;
-import com.bin.im.domain.vo.request.*;
-import com.bin.im.domain.vo.request.member.MemberReq;
-import com.bin.im.domain.vo.response.ChatMemberListResp;
-import com.bin.im.domain.vo.response.ChatMemberStatisticResp;
-import com.bin.im.domain.vo.response.ChatMessageReadResp;
-import com.bin.im.domain.vo.response.ChatMessageResp;
-import com.bin.im.domain.vo.response.common.CursorPageBaseResp;
-import com.bin.im.domain.ws.ChatMemberResp;
+import com.bin.model.im.dto.MsgReadInfoDTO;
+import com.bin.model.im.entity.Message;
+import com.bin.model.im.vo.request.*;
+import com.bin.model.im.vo.request.member.MemberReq;
+import com.bin.model.im.vo.request.ChatMessagePageReq;
+import com.bin.model.im.vo.response.ChatMemberListResp;
+import com.bin.model.im.vo.response.ChatMemberStatisticResp;
+import com.bin.model.im.vo.response.ChatMessageReadResp;
+import com.bin.model.im.vo.response.ChatMessageResp;
+import com.bin.model.common.vo.response.CursorPageBaseResp;
+import com.bin.model.user.vo.response.ws.ChatMemberResp;
+import com.bin.model.im.vo.request.ChatMessageReq;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;

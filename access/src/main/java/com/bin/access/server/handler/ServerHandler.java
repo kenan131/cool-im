@@ -2,8 +2,12 @@ package com.bin.access.server.handler;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
+import cn.hutool.json.JSONUtil;
+import com.bin.model.user.vo.request.user.LoginReqDto;
 import com.bin.access.service.WebSocketService;
 import com.bin.access.util.NettyUtil;
+import com.bin.model.user.enums.WSReqTypeEnum;
+import com.bin.model.user.vo.request.ws.WSBaseReq;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -38,19 +42,35 @@ public class ServerHandler extends SimpleChannelInboundHandler<TextWebSocketFram
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
-        String text = textWebSocketFrame.text();
-        System.out.println(text);
+        WSBaseReq wsBaseReq = JSONUtil.toBean(textWebSocketFrame.text(), WSBaseReq.class);
+        WSReqTypeEnum wsReqTypeEnum = WSReqTypeEnum.of(wsBaseReq.getType());
+        switch (wsReqTypeEnum) {
+            case LOGIN:
+                try{
+                    LoginReqDto loginReqDto = JSONUtil.toBean(wsBaseReq.getData(), LoginReqDto.class);
+                    webSocketService.login(loginReqDto,channelHandlerContext.channel());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case HEARTBEAT:
+                break;
+            default:
+                log.info("未知类型");
+        }
     }
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) {
+            System.out.println("读空闲");
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
             // 读空闲
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
                 // 关闭用户的连接
                 webSocketService.offLine(ctx);
             }
+            ctx.channel().close();
         } else if (evt instanceof WebSocketServerProtocolHandler.HandshakeComplete) {
             String token = NettyUtil.getAttr(ctx.channel(), NettyUtil.TOKEN);
             if (StrUtil.isNotBlank(token)) {

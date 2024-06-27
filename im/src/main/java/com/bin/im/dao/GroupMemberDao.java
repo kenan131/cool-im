@@ -2,8 +2,7 @@ package com.bin.im.dao;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.bin.im.domain.entity.GroupMember;
-import com.bin.im.domain.enums.GroupRoleEnum;
+import com.bin.model.im.entity.GroupMember;
 import com.bin.im.mapper.GroupMemberMapper;
 import com.bin.im.service.cache.imp.GroupMemberCache;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -11,6 +10,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.bin.model.user.enums.GroupRoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.bin.im.domain.enums.GroupRoleEnum.ADMIN_LIST;
+import static com.bin.model.user.enums.GroupRoleEnum.ADMIN_LIST;
 
 /**
  * <p>

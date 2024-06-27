@@ -1,6 +1,6 @@
 package com.bin.im.dao;
 
-import com.bin.im.domain.entity.RoomGroup;
+import com.bin.model.im.entity.RoomGroup;
 import com.bin.im.mapper.RoomGroupMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

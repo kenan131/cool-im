@@ -1,12 +1,12 @@
 package com.bin.im.service.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.bin.im.domain.entity.*;
-import com.bin.im.domain.enums.GroupRoleEnum;
-import com.bin.im.domain.enums.MessageTypeEnum;
-import com.bin.im.domain.vo.request.ChatMessageReq;
-import com.bin.im.domain.vo.response.ChatMessageReadResp;
-import com.bin.im.domain.vo.response.ChatRoomResp;
+import com.bin.model.im.entity.*;
+import com.bin.model.user.enums.GroupRoleEnum;
+import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.im.vo.request.ChatMessageReq;
+import com.bin.model.im.vo.response.ChatMessageReadResp;
+import com.bin.model.im.vo.response.ChatRoomResp;
 import com.bin.model.user.entity.User;
 
 import java.util.List;
