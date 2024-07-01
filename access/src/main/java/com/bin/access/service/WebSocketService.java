@@ -14,6 +14,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;
 
@@ -42,15 +43,7 @@ public class WebSocketService {
     @DubboReference(check = false)
     private RouterServiceApi routerServiceApi;
 
-    private String localIp;
-
-    @PostConstruct
-    void init() throws UnknownHostException {
-        // 注册服务
-        InetAddress localHost = InetAddress.getLocalHost();
-        //获取本机ip地址
-        localIp = localHost.getHostAddress();
-    }
+    static String localIp = NetUtils.getLocalHost();
 
     public void login(LoginReqDto dto,Channel channel){
         try{
@@ -131,6 +124,7 @@ public class WebSocketService {
             log.info("用户：{}不在线", uid);
             return;
         }
+        System.err.println("消息推送到前端" + wsBaseResp + " 用户id ：" + uid);
         sendMsg(channel, wsBaseResp);
     }
 
@@ -149,7 +143,6 @@ public class WebSocketService {
      * 给本地channel发送消息
      */
     public void sendMsg(Channel channel, WSBaseResp wsBaseResp) {
-        System.err.println("消息推送到前端" + wsBaseResp);
         channel.writeAndFlush(new TextWebSocketFrame(JSONUtil.toJsonStr(wsBaseResp)));
     }
 

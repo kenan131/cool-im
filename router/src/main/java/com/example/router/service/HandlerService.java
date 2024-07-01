@@ -72,7 +72,9 @@ public class HandlerService {
                     config.setInterface(AccessServiceApi.class);
                     config.setAsync(true);
                     AccessServiceApi demoService1 = config.get();
-                    UserSpecifiedAddressUtil.setAddress(new Address(accessIp, dubboPort, true));
+                    System.out.println(accessIp);
+                    String ip = accessIp;
+                    UserSpecifiedAddressUtil.setAddress(new Address(ip, dubboPort, true));
                     PushMessageDTO pushMessageDTO = new PushMessageDTO(userId, dto.getData());
                     demoService1.pushMessage(Collections.singletonList(pushMessageDTO));
                 }
@@ -129,6 +131,7 @@ public class HandlerService {
             ArrayList<PushMessageDTO> pushMessages = new ArrayList<>();
             List<Long> roomIds = tempMap.keySet().stream().collect(Collectors.toList());
             Map<Long, List<Long>> memberMap = imServiceApi.getMemberIdsByRoomIds(roomIds);
+            System.out.println("房间需要推送的用户id" + memberMap);
             tempMap.forEach((roomId, set) -> {
                 List<Object> data = set.stream().collect(Collectors.toList());
                 // 这里得查询出 房间所有成员id

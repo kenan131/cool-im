@@ -4,6 +4,8 @@ import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.bin.api.router.RouterServiceApi;
+import org.apache.dubbo.common.logger.support.FailsafeLogger;
+import org.apache.dubbo.common.utils.NetUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,18 +28,14 @@ public class NettyServerRegister {
     String serviceName;
     @Value("${im.server.port}")
     Integer port;
-    private String localIp = "";
-
     @DubboReference(check = false)
     private RouterServiceApi routerServiceApi;
 
+    // 使用dubbo获取ip地址得工具类。
+    static String localIp = NetUtils.getLocalHost();
+
     @PostConstruct
     public void init() throws NacosException, UnknownHostException {
-        // 注册服务
-        InetAddress localHost = InetAddress.getLocalHost();
-        //获取本机ip地址
-        localIp = localHost.getHostAddress();
-
         // 创建 Nacos 客户端实例
         Properties properties = new Properties();
         properties.setProperty("serverAddr", serverAddr);

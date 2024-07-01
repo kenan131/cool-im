@@ -14,9 +14,6 @@ spring:
     active: pro
   application:
     name: cool-im
-  devtools:
-    restart:
-      enabled: true
   datasource:
     url: jdbc:mysql://${mallchat.mysql.ip}:${mallchat.mysql.port}/${mallchat.mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: ${mallchat.mysql.username}
