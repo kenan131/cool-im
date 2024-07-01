@@ -36,22 +36,18 @@ public class GatewayResponseRes implements Serializable {
             httpResponseStatus = responseCode.getStatus();
             headers = new DefaultHttpHeaders();
             headers.add(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_JSON+";charset=utf-8");
-            httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus);
         }
         else{
             httpResponseStatus = HttpResponseStatus.valueOf(response.getStatusCode());
             headers = response.getHeaders();
-            // Transfer-Encoding 不能和 CONTENT_LENGTH 共同存在
-            headers.remove("Transfer-Encoding");
             //因网关层包装了返回信息，故设置json串格式。
             headers.set(HttpHeaderNames.CONTENT_TYPE,HttpHeaderValues.APPLICATION_JSON+";charset=utf-8");
             //有返回内容，赋值给data
             gatewayResponseRes.setData(response.getResponseBody(StandardCharsets.UTF_8));
-            ByteBuf content = Unpooled.wrappedBuffer(response.getResponseBodyAsBytes());
-            httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus,content);
         }
+        ByteBuf content = Unpooled.wrappedBuffer(JSON.toJSONBytes(gatewayResponseRes));
+        httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus,content);
         httpResponse.headers().add(headers);
-        httpResponse.headers().set(HttpHeaderNames.CONTENT_LENGTH, httpResponse.content().readableBytes());
         return httpResponse;
     }
 
@@ -68,7 +64,26 @@ public class GatewayResponseRes implements Serializable {
         ByteBuf content = Unpooled.wrappedBuffer(JSON.toJSONBytes(gatewayResponseRes));
         httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus,content);
         httpResponse.headers().add(headers);
-        httpResponse.headers().set(HttpHeaderNames.CONTENT_LENGTH, httpResponse.content().readableBytes());
+        return httpResponse;
+    }
+
+    public static FullHttpResponse builderGatewayNativeRes(Response response, ResponseCode responseCode){
+        DefaultFullHttpResponse httpResponse;
+        HttpResponseStatus httpResponseStatus;
+        HttpHeaders headers;
+        if(response == null){
+            httpResponseStatus = responseCode.getStatus();
+            headers = new DefaultHttpHeaders();
+            httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus);
+        }
+        else{
+            httpResponseStatus = HttpResponseStatus.valueOf(response.getStatusCode());
+            headers = response.getHeaders();
+            //有返回内容，赋值给data
+            ByteBuf content = Unpooled.wrappedBuffer(response.getResponseBodyAsBytes());
+            httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,httpResponseStatus,content);
+        }
+        httpResponse.headers().add(headers);
         return httpResponse;
     }
 }

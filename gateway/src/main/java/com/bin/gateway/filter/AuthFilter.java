@@ -8,6 +8,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.netty.handler.codec.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @date: 2023/12/26 11:53
  **/
 @Component
+@ConditionalOnProperty(name = "cool.gateway.authority.enable",havingValue = "true")
 public class AuthFilter implements Filter{
 
     @Value("${cool.gateway.authority.accessKey:coolGateway}")
