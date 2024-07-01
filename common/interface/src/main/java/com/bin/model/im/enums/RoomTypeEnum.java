@@ -1,4 +1,4 @@
-package com.bin.model.user.enums;
+package com.bin.model.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

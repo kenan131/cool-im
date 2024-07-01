@@ -27,14 +27,14 @@ public class WSMsgMark {
         @ApiModelProperty("消息id")
         private Long msgId;
         /**
-         * @see com.bin.model.user.enums.MessageMarkTypeEnum
+         * @see com.bin.model.common.exception.MessageMarkTypeEnum
          */
         @ApiModelProperty("标记类型 1点赞 2举报")
         private Integer markType;
         @ApiModelProperty("被标记的数量")
         private Integer markCount;
         /**
-         * @see com.bin.model.user.enums.MessageMarkActTypeEnum
+         * @see com.bin.model.common.exception.MessageMarkActTypeEnum
          */
         @ApiModelProperty("动作类型 1确认 2取消")
         private Integer actType;

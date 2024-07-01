@@ -1,6 +1,6 @@
 package com.bin.user.service;
 
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.RoleEnum;
 
 /**
  * <p>

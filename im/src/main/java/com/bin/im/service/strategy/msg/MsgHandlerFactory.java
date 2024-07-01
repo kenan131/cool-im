@@ -1,6 +1,6 @@
 package com.bin.im.service.strategy.msg;
 
-import com.bin.model.user.enums.CommonErrorEnum;
+import com.bin.model.common.exception.CommonErrorEnum;
 import com.bin.im.util.AssertUtil;
 
 import java.util.HashMap;

@@ -5,7 +5,7 @@ import com.bin.model.im.entity.RoomGroup;
 import com.bin.model.im.entity.GroupMember;
 import com.bin.model.user.entity.User;
 import com.bin.model.im.vo.request.ChatMessageReq;
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 import com.bin.model.user.vo.response.ws.WSMemberChange;
 import com.bin.im.event.GroupMemberAddEvent;
 import com.bin.im.mq.PushService;

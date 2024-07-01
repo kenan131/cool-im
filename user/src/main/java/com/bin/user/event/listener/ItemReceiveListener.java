@@ -6,7 +6,7 @@ import com.bin.user.dao.UserDao;
 import com.bin.model.user.entity.ItemConfig;
 import com.bin.model.user.entity.User;
 import com.bin.model.user.entity.UserBackpack;
-import com.bin.model.user.enums.ItemTypeEnum;
+import com.bin.model.common.exception.ItemTypeEnum;
 import com.bin.user.event.ItemReceiveEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

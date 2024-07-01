@@ -1,6 +1,6 @@
 package com.bin.api.router.dto;
 
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 import lombok.Builder;
 import lombok.Data;
 
@@ -35,6 +35,41 @@ public class RouterMessageDto implements Serializable {
         this.type = type;
         this.receiveId = receiveId;
         this.roomId = roomId;
+        this.data = data;
+    }
+
+    public RouterMessageDto() {
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public List<Long> getReceiveId() {
+        return receiveId;
+    }
+
+    public void setReceiveId(List<Long> receiveId) {
+        this.receiveId = receiveId;
+    }
+
+    public Long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
+    }
+
+    public WSBaseResp<?> getData() {
+        return data;
+    }
+
+    public void setData(WSBaseResp<?> data) {
         this.data = data;
     }
 }

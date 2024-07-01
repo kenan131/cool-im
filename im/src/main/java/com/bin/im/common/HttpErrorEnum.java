@@ -2,7 +2,7 @@ package com.bin.im.common;
 
 import cn.hutool.http.ContentType;
 import cn.hutool.json.JSONUtil;
-import com.bin.model.user.enums.ErrorEnum;
+import com.bin.model.common.exception.ErrorEnum;
 import com.bin.model.common.vo.response.ApiResult;
 import com.google.common.base.Charsets;
 import lombok.AllArgsConstructor;

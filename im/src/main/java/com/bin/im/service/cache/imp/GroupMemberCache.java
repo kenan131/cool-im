@@ -19,9 +19,6 @@ import java.util.Objects;
  */
 @Component
 public class GroupMemberCache {
-
-    @Autowired
-    private MessageDao messageDao;
     @Autowired
     private RoomGroupDao roomGroupDao;
     @Autowired

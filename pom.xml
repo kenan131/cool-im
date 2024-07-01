@@ -38,6 +38,7 @@
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <jjwt.version>0.9.1</jjwt.version>
         <redisson-spring-boot-starter.version>3.17.1</redisson-spring-boot-starter.version>
+        <async-http-client.version>2.12.1</async-http-client.version>
     </properties>
 
     <dependencyManagement>

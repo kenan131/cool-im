@@ -48,7 +48,7 @@ public class MessageMark implements Serializable {
     /**
      * 标记类型 1点赞 2举报
      *
-     * @see com.bin.model.user.enums.MessageMarkTypeEnum
+     * @see com.bin.model.common.exception.MessageMarkTypeEnum
      */
     @TableField("type")
     private Integer type;

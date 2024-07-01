@@ -12,6 +12,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+
 /**
  * 好友申请监听器
  *
@@ -32,7 +34,7 @@ public class UserApplyListener {
         try{
             UserApply userApply = event.getUserApply();
             Integer unReadCount = userApplyDao.getUnReadCount(userApply.getTargetId());
-            pushService.sendPushMsg(WSAdapter.buildApplySend(new WSFriendApply(userApply.getUid(), unReadCount)), userApply.getTargetId());
+            pushService.sendPushMsg(WSAdapter.buildApplySend(new WSFriendApply(userApply.getUid(), unReadCount)), Collections.singletonList(userApply.getTargetId()));
         }catch (Exception e){
             e.printStackTrace();
             log.error("好友通知失败"+event.toString());

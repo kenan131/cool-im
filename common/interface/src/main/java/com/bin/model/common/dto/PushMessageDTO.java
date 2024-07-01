@@ -1,7 +1,7 @@
 package com.bin.model.user.dto;
 
-import com.bin.model.user.enums.WSBaseResp;
-import com.bin.model.user.enums.WSPushTypeEnum;
+import com.bin.model.common.exception.WSBaseResp;
+import com.bin.model.common.exception.WSPushTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

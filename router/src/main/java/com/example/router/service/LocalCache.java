@@ -18,6 +18,7 @@ public class LocalCache {
     Map<String, Set<Long>> ipMap = new ConcurrentHashMap<>();
 
     public boolean bind(Long userId,String ip){
+        System.out.println(userId + " : " + ip);
         idMap.put(userId,ip);
         Set<Long> idSet = ipMap.getOrDefault(ip, new HashSet<Long>());
         idSet.add(userId);
@@ -36,8 +37,10 @@ public class LocalCache {
     // 服务下线，清空所有在线用户。
     public boolean ServerOff(String ip){
         Set<Long> ids = ipMap.get(ip);
-        for(Long id : ids){
-            idMap.remove(id);
+        if(ids != null){
+            for(Long id : ids){
+                idMap.remove(id);
+            }
         }
         return true;
     }

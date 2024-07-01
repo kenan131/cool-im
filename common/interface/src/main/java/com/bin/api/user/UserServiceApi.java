@@ -4,8 +4,8 @@ import com.bin.model.user.dto.CursorPageBaseReq;
 import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.model.user.entity.Black;
 import com.bin.model.user.entity.User;
-import com.bin.model.user.enums.ChatActiveStatusEnum;
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.ChatActiveStatusEnum;
+import com.bin.model.common.exception.RoleEnum;
 import com.bin.model.user.vo.request.user.LoginReqDto;
 import com.bin.model.user.vo.response.user.LoginResp;
 
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public interface UserServiceApi {
 
-    public Long getUserId(String token);
+    public LoginResp getUserId(String token);
 
     public LoginResp login(LoginReqDto dto);
 

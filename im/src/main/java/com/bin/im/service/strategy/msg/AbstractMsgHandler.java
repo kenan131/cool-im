@@ -3,7 +3,7 @@ package com.bin.im.service.strategy.msg;
 import cn.hutool.core.bean.BeanUtil;
 import com.bin.im.dao.MessageDao;
 import com.bin.model.im.entity.Message;
-import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
 import com.bin.model.im.vo.request.ChatMessageReq;
 import com.bin.im.util.AssertUtil;
 import com.bin.im.service.adapter.MessageAdapter;

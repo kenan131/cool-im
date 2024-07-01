@@ -2,7 +2,7 @@ package com.bin.im.service.strategy.msg;
 
 import com.bin.im.dao.MessageDao;
 import com.bin.model.im.entity.Message;
-import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

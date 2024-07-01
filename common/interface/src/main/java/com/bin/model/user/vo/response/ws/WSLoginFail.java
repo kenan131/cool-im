@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author: bin.jiang
  * @date: 2024/6/27 16:29
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WSLoginFail {
+public class WSLoginFail implements Serializable {
     //登录失败的提示信息。
     private String errorMsg;
 }

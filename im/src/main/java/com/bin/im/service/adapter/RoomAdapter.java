@@ -2,8 +2,8 @@ package com.bin.im.service.adapter;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.bin.model.im.entity.*;
-import com.bin.model.user.enums.GroupRoleEnum;
-import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.common.exception.GroupRoleEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
 import com.bin.model.im.vo.request.ChatMessageReq;
 import com.bin.model.im.vo.response.ChatMessageReadResp;
 import com.bin.model.im.vo.response.ChatRoomResp;

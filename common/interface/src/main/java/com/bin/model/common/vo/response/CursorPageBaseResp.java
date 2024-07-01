@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 @ApiModel("游标翻页返回")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CursorPageBaseResp<T> {
+public class CursorPageBaseResp<T> implements Serializable {
 
     @ApiModelProperty("游标（下次翻页带上这参数）")
     private String cursor;

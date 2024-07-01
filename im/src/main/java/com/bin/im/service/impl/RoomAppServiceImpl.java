@@ -7,15 +7,16 @@ import com.bin.im.dao.ContactDao;
 import com.bin.im.dao.GroupMemberDao;
 import com.bin.im.dao.MessageDao;
 import com.bin.api.user.UserServiceApi;
-import com.bin.model.user.enums.GroupErrorEnum;
-import com.bin.model.user.enums.GroupRoleAPPEnum;
-import com.bin.model.user.enums.GroupRoleEnum;
-import com.bin.model.user.enums.HotFlagEnum;
-import com.bin.model.user.enums.RoleEnum;
-import com.bin.model.user.enums.RoomTypeEnum;
+import com.bin.model.common.exception.GroupErrorEnum;
+import com.bin.model.common.exception.GroupRoleAPPEnum;
+import com.bin.model.common.exception.GroupRoleEnum;
+import com.bin.model.common.exception.HotFlagEnum;
+import com.bin.model.common.exception.RoleEnum;
+import com.bin.model.common.exception.RoomTypeEnum;
+import com.bin.model.common.exception.WSBaseResp;
 import com.bin.model.im.dto.RoomBaseInfo;
 import com.bin.model.im.entity.*;
-import com.bin.model.user.enums.*;
+import com.bin.model.common.exception.*;
 import com.bin.model.im.vo.request.ChatMessageMemberReq;
 import com.bin.model.im.vo.request.GroupAddReq;
 import com.bin.model.im.vo.request.member.MemberAddReq;
@@ -81,7 +82,7 @@ public class RoomAppServiceImpl implements RoomAppService {
     private GroupMemberDao groupMemberDao;
     @Autowired
     private ChatService chatService;
-    @DubboReference(interfaceClass = UserServiceApi.class)
+    @DubboReference(interfaceClass = UserServiceApi.class,check = false)
     private UserServiceApi userServiceApi;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;

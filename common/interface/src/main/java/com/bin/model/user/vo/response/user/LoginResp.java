@@ -1,6 +1,6 @@
 package com.bin.model.user.vo.response.user;
 
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @date: 2024/6/27 15:26
  **/
 public class LoginResp implements Serializable {
+    private Long uid;
     private boolean type;
     private String errorMsg;
 
@@ -38,16 +39,25 @@ public class LoginResp implements Serializable {
         this.wsBaseResp = wsBaseResp;
     }
 
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
     static public LoginResp buildFailResp(String errorMsg){
         LoginResp resp = new LoginResp();
         resp.setType(false);
         resp.setErrorMsg(errorMsg);
         return resp;
     }
-    static public LoginResp buildSuccessResp(WSBaseResp wsBaseResp){
+    static public LoginResp buildSuccessResp(Long uid,WSBaseResp wsBaseResp){
         LoginResp resp = new LoginResp();
         resp.setType(true);
         resp.setWsBaseResp(wsBaseResp);
+        resp.setUid(uid);
         return resp;
     }
 

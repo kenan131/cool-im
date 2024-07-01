@@ -12,9 +12,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.bin.model.user.enums.ApplyReadStatusEnum.UNREAD;
-import static com.bin.model.user.enums.ApplyStatusEnum.WAIT_APPROVAL;
-import static com.bin.model.user.enums.ApplyTypeEnum.ADD_FRIEND;
+import static com.bin.model.common.exception.ApplyReadStatusEnum.UNREAD;
+import static com.bin.model.common.exception.ApplyStatusEnum.WAIT_APPROVAL;
+import static com.bin.model.common.exception.ApplyTypeEnum.ADD_FRIEND;
 
 /**
  * Description: 好友适配器

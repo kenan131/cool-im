@@ -1,7 +1,7 @@
 package com.bin.user.aspect.imp;
 
-import com.bin.model.user.enums.BusinessException;
-import com.bin.model.user.enums.CommonErrorEnum;
+import com.bin.model.common.exception.BusinessException;
+import com.bin.model.common.exception.CommonErrorEnum;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;

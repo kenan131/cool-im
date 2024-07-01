@@ -8,10 +8,10 @@ import cn.hutool.core.lang.Pair;
 import com.bin.im.aspect.annotation.RedissonLock;
 import com.bin.im.dao.*;
 import com.bin.api.user.UserServiceApi;
-import com.bin.model.user.enums.ChatActiveStatusEnum;
-import com.bin.model.user.enums.MessageMarkActTypeEnum;
-import com.bin.model.user.enums.MessageTypeEnum;
-import com.bin.model.user.enums.NormalOrNoEnum;
+import com.bin.model.common.exception.ChatActiveStatusEnum;
+import com.bin.model.common.exception.MessageMarkActTypeEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
+import com.bin.model.common.exception.NormalOrNoEnum;
 import com.bin.model.im.dto.MsgReadInfoDTO;
 import com.bin.model.im.entity.*;
 import com.bin.im.event.MessageSendEvent;
@@ -283,7 +283,7 @@ public class ChatServiceImpl implements ChatService {
     private void checkRecall(Long uid, Message message) {
         AssertUtil.isNotEmpty(message, "消息有误");
         AssertUtil.notEqual(message.getType(), MessageTypeEnum.RECALL.getType(), "消息无法撤回");
-        boolean hasPower = userServiceApi.hasPower(uid, com.bin.model.user.enums.RoleEnum.CHAT_MANAGER);
+        boolean hasPower = userServiceApi.hasPower(uid, com.bin.model.common.exception.RoleEnum.CHAT_MANAGER);
         if (hasPower) {
             return;
         }

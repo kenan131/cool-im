@@ -15,7 +15,7 @@ import com.bin.model.im.entity.Message;
 import com.bin.model.im.entity.Room;
 import com.bin.model.im.entity.RoomFriend;
 import com.bin.model.im.vo.response.ChatMessageResp;
-import com.bin.model.user.enums.RoomTypeEnum;
+import com.bin.model.common.exception.RoomTypeEnum;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;

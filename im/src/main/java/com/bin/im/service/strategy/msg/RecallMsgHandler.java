@@ -6,7 +6,7 @@ import com.bin.model.im.entity.Message;
 import com.bin.model.user.entity.User;
 import com.bin.model.im.entity.msg.MessageExtra;
 import com.bin.model.im.entity.msg.MsgRecall;
-import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
 import com.bin.im.event.MessageRecallEvent;
 import com.bin.im.service.cache.imp.MsgCache;
 import com.bin.im.service.cache.imp.UserCache;

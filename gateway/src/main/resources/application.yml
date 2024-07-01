@@ -1,3 +1,38 @@
-spring:
-  application:
-    name: GateWay
+cool:
+  gateway:
+    port: 9000
+    routes:
+      - id: user
+        instanceName: cool-user
+        loadType: round
+        predicates:
+          - /capi/user/**
+      - id: im
+        instanceName: cool-im
+        loadType: round
+        predicates:
+          - /capi/room/**
+          - /capi/chat/**
+      - id: router
+        instanceName: cool-router
+        loadType: round
+        predicates:
+          - /capi/router/**
+    whites:
+      - /capi/chat/public/**
+      - /capi/room/public/**
+      - /capi/user/public/**
+      - /capi/router/public/**
+    limit:
+      open: false
+      limitType: slide
+      qps: 5
+      timeWindow: 5000
+    authority:
+      accessKey: coolGateway
+  registerCenter:
+    adders: 127.0.0.1:8848
+    group: DEFAULT_GROUP
+  server:
+    coreThreadNumber: 10
+    maxThreadNumber: 10

@@ -3,14 +3,14 @@ package com.bin.im.service.strategy.msg;
 import cn.hutool.core.collection.CollectionUtil;
 import com.bin.im.dao.MessageDao;
 import com.bin.api.user.UserServiceApi;
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.RoleEnum;
 import com.bin.model.user.dto.UrlInfo;
 import com.bin.model.im.entity.Message;
 import com.bin.model.user.entity.User;
 import com.bin.model.im.entity.msg.MessageExtra;
-import com.bin.model.user.enums.MessageStatusEnum;
-import com.bin.model.user.enums.MessageTypeEnum;
-import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.common.exception.MessageStatusEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
+import com.bin.model.common.exception.YesOrNoEnum;
 import com.bin.model.im.vo.request.msg.TextMsgReq;
 import com.bin.model.im.vo.response.msg.TextMsgResp;
 import com.bin.im.service.adapter.MessageAdapter;
@@ -42,7 +42,7 @@ public class TextMsgHandler extends AbstractMsgHandler<TextMsgReq> {
     private MsgCache msgCache;
     @Autowired
     private UserCache userCache;
-    @DubboReference(interfaceClass = UserServiceApi.class)
+    @DubboReference(interfaceClass = UserServiceApi.class,check = false)
     private UserServiceApi userServiceApi;
 
     @Autowired

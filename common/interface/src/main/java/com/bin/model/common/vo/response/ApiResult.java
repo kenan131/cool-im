@@ -1,6 +1,6 @@
 package com.bin.model.common.vo.response;
 
-import com.bin.model.user.enums.ErrorEnum;
+import com.bin.model.common.exception.ErrorEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

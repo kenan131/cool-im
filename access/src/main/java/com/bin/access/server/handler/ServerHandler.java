@@ -6,7 +6,7 @@ import cn.hutool.json.JSONUtil;
 import com.bin.model.user.vo.request.user.LoginReqDto;
 import com.bin.access.service.WebSocketService;
 import com.bin.access.util.NettyUtil;
-import com.bin.model.user.enums.WSReqTypeEnum;
+import com.bin.model.common.exception.WSReqTypeEnum;
 import com.bin.model.user.vo.request.ws.WSBaseReq;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

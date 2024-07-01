@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.bin.im.common.HttpErrorEnum;
 import com.bin.im.service.cache.imp.UserCache;
 import com.bin.im.util.RequestHolder;
-import com.bin.model.user.enums.BlackTypeEnum;
+import com.bin.model.common.exception.BlackTypeEnum;
 import com.bin.model.user.dto.RequestInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,7 +21,7 @@ public class ChatMemberResp {
     @ApiModelProperty("uid")
     private Long uid;
     /**
-     * @see com.bin.model.user.enums.ChatActiveStatusEnum
+     * @see com.bin.model.common.exception.ChatActiveStatusEnum
      */
     @ApiModelProperty("在线状态 1在线 2离线")
     private Integer activeStatus;

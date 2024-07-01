@@ -4,7 +4,7 @@ import com.bin.im.dao.MessageDao;
 import com.bin.model.im.entity.Message;
 import com.bin.model.im.entity.msg.EmojisMsgDTO;
 import com.bin.model.im.entity.msg.MessageExtra;
-import com.bin.model.user.enums.MessageTypeEnum;
+import com.bin.model.common.exception.MessageTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -4,7 +4,7 @@ import com.bin.api.router.dto.RouterMessageDto;
 import com.bin.api.router.dto.RouterMessageEnum;
 import com.bin.model.common.MQConstant;
 import com.bin.model.user.dto.PushMessageDTO;
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 import com.bin.transaction.service.MQProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +34,5 @@ public class PushService {
 
     public void sendSecureMsg(String topic, Object body, Object key) {
         mqProducer.sendSecureMsg(topic,body,key);
-    }
-
-    public void sendPushMsg(WSBaseResp<?> msg) {
-        mqProducer.sendMsg(MQConstant.PUSH_TOPIC, new PushMessageDTO(msg));
     }
 }

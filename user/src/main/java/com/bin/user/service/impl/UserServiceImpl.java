@@ -2,7 +2,7 @@ package com.bin.user.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.bin.api.access.dto.WSAdapter;
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.RoleEnum;
 import com.bin.model.user.vo.response.user.LoginResp;
 import com.bin.user.cache.imp.ItemCache;
 import com.bin.user.cache.imp.UserCache;
@@ -17,9 +17,9 @@ import com.bin.model.user.entity.Black;
 import com.bin.model.user.entity.ItemConfig;
 import com.bin.model.user.entity.User;
 import com.bin.model.user.entity.UserBackpack;
-import com.bin.model.user.enums.BlackTypeEnum;
-import com.bin.model.user.enums.ItemEnum;
-import com.bin.model.user.enums.ItemTypeEnum;
+import com.bin.model.common.exception.BlackTypeEnum;
+import com.bin.model.common.exception.ItemEnum;
+import com.bin.model.common.exception.ItemTypeEnum;
 import com.bin.model.user.vo.request.user.*;
 import com.bin.model.user.vo.response.user.BadgeResp;
 import com.bin.model.user.vo.response.user.UserInfoResp;
@@ -85,11 +85,17 @@ public class UserServiceImpl implements UserService {
         }
         String token = LoginServiceImpl.login(user.getId());
         boolean hasPower = roleService.hasPower(user.getId(), RoleEnum.CHAT_MANAGER);
-        return LoginResp.buildSuccessResp(WSAdapter.buildLoginSuccessResp(user,token,hasPower));
+        return LoginResp.buildSuccessResp(user.getId(),WSAdapter.buildLoginSuccessResp(user,token,hasPower));
     }
     @Override
-    public Long getUserIdByToken(String token){
-        return LoginServiceImpl.getValidUid(token);
+    public LoginResp getUserIdByToken(String token){
+        Long uid = LoginServiceImpl.getValidUid(token);
+        if(uid != null){
+            User user = userCache.getUserInfo(uid);
+            boolean hasPower = roleService.hasPower(uid, RoleEnum.CHAT_MANAGER);
+            return LoginResp.buildSuccessResp(uid,WSAdapter.buildLoginSuccessResp(user,token,hasPower));
+        }
+        return null;
     }
 
     @Override

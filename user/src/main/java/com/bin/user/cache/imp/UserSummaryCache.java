@@ -4,7 +4,7 @@ import com.bin.user.cache.AbstractRedisStringCache;
 import com.bin.user.dao.UserBackpackDao;
 import com.bin.model.user.dto.SummeryInfoDTO;
 import com.bin.model.user.entity.*;
-import com.bin.model.user.enums.ItemTypeEnum;
+import com.bin.model.common.exception.ItemTypeEnum;
 import com.bin.user.utils.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

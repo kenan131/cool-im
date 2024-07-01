@@ -1,7 +1,7 @@
 package com.bin.user.config.intecepter;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.bin.model.user.enums.BlackTypeEnum;
+import com.bin.model.common.exception.BlackTypeEnum;
 import com.bin.model.user.dto.RequestInfo;
 import com.bin.user.cache.imp.UserCache;
 import com.bin.user.common.HttpErrorEnum;

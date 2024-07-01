@@ -2,10 +2,10 @@ package com.bin.im.service.adapter;
 
 import com.bin.model.im.entity.GroupMember;
 import com.bin.model.user.entity.User;
-import com.bin.model.user.enums.GroupRoleEnum;
+import com.bin.model.common.exception.GroupRoleEnum;
 import com.bin.model.im.vo.response.ChatMemberListResp;
-import com.bin.model.user.enums.WSBaseResp;
-import com.bin.model.user.enums.WSRespTypeEnum;
+import com.bin.model.common.exception.WSBaseResp;
+import com.bin.model.common.exception.WSRespTypeEnum;
 import com.bin.model.user.vo.response.ws.ChatMemberResp;
 import com.bin.model.user.vo.response.ws.WSMemberChange;
 import lombok.extern.slf4j.Slf4j;

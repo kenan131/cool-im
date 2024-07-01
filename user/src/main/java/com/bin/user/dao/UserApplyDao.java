@@ -4,15 +4,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bin.model.user.entity.UserApply;
-import com.bin.model.user.enums.ApplyStatusEnum;
-import com.bin.model.user.enums.ApplyTypeEnum;
+import com.bin.model.common.exception.ApplyStatusEnum;
+import com.bin.model.common.exception.ApplyTypeEnum;
 import com.bin.user.mapper.UserApplyMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-import static com.bin.model.user.enums.ApplyReadStatusEnum.READ;
-import static com.bin.model.user.enums.ApplyReadStatusEnum.UNREAD;
-import static com.bin.model.user.enums.ApplyStatusEnum.AGREE;
+import static com.bin.model.common.exception.ApplyReadStatusEnum.READ;
+import static com.bin.model.common.exception.ApplyReadStatusEnum.UNREAD;
+import static com.bin.model.common.exception.ApplyStatusEnum.AGREE;
 
 /**
  * <p>

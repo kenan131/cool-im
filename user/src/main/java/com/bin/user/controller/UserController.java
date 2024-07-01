@@ -2,7 +2,7 @@ package com.bin.user.controller;
 
 import com.bin.model.user.dto.ItemInfoDTO;
 import com.bin.model.user.dto.SummeryInfoDTO;
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.RoleEnum;
 import com.bin.model.user.vo.request.user.*;
 import com.bin.model.user.vo.response.user.UserInfoResp;
 import com.bin.model.common.vo.response.ApiResult;

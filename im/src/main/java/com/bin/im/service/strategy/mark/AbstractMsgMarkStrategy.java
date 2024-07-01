@@ -1,12 +1,12 @@
 package com.bin.im.service.strategy.mark;
 
 import com.bin.im.dao.MessageMarkDao;
-import com.bin.model.user.enums.BusinessException;
+import com.bin.model.common.exception.BusinessException;
 import com.bin.model.im.dto.ChatMessageMarkDTO;
 import com.bin.model.im.entity.MessageMark;
-import com.bin.model.user.enums.MessageMarkActTypeEnum;
-import com.bin.model.user.enums.MessageMarkTypeEnum;
-import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.common.exception.MessageMarkActTypeEnum;
+import com.bin.model.common.exception.MessageMarkTypeEnum;
+import com.bin.model.common.exception.YesOrNoEnum;
 import com.bin.im.event.MessageMarkEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

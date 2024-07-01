@@ -2,7 +2,7 @@ package com.bin.im.service.helper;
 
 import cn.hutool.core.lang.Pair;
 import cn.hutool.core.util.StrUtil;
-import com.bin.model.user.enums.ChatActiveStatusEnum;
+import com.bin.model.common.exception.ChatActiveStatusEnum;
 
 /**
  * Description: 成员列表工具类

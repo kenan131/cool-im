@@ -1,7 +1,7 @@
 package com.bin.im.controller;
 
 import com.bin.model.im.dto.MsgReadInfoDTO;
-import com.bin.model.user.enums.BlackTypeEnum;
+import com.bin.model.common.exception.BlackTypeEnum;
 import com.bin.model.im.vo.request.*;
 import com.bin.model.im.vo.response.ChatMessageReadResp;
 import com.bin.model.im.vo.response.ChatMessageResp;

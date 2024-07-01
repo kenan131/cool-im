@@ -24,7 +24,7 @@ public interface UserService {
     LoginResp login(LoginReqDto dto);
 
 
-    Long getUserIdByToken(String token);
+    LoginResp getUserIdByToken(String token);
 
     /**
      * 获取前端展示信息

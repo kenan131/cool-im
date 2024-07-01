@@ -37,7 +37,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.bin.model.user.enums.ApplyStatusEnum.WAIT_APPROVAL;
+import static com.bin.model.common.exception.ApplyStatusEnum.WAIT_APPROVAL;
 
 @Slf4j
 @Service

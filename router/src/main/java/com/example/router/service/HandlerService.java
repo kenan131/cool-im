@@ -123,6 +123,8 @@ public class HandlerService {
     }
 
     private void handler(ConcurrentHashMap<Long, Set<Object>> tempMap) {
+        System.out.println("消息聚合开始！" );
+        System.out.println(tempMap);
         try {
             ArrayList<PushMessageDTO> pushMessages = new ArrayList<>();
             List<Long> roomIds = tempMap.keySet().stream().collect(Collectors.toList());

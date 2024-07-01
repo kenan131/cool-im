@@ -5,9 +5,9 @@ import com.bin.model.user.vo.request.user.LoginReqDto;
 import com.bin.api.access.dto.WSAdapter;
 import com.bin.api.router.RouterServiceApi;
 import com.bin.api.user.UserServiceApi;
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 import com.bin.model.user.dto.PushMessageDTO;
-import com.bin.model.user.enums.WSPushTypeEnum;
+import com.bin.model.common.exception.WSPushTypeEnum;
 import com.bin.model.user.vo.response.user.LoginResp;
 import com.bin.model.user.vo.response.ws.WSLoginFail;
 import io.netty.channel.Channel;
@@ -57,6 +57,7 @@ public class WebSocketService {
             LoginResp resp = userServiceApi.login(dto);
             if(resp.getType()){
                 sendMsg(channel, resp.getWsBaseResp());
+                onLine(resp.getUid(),channel);
             }else{
                 System.out.println("登录失败" + resp.getErrorMsg());
                 sendMsg(channel, WSAdapter.buildLoginFailMsg(new WSLoginFail(resp.getErrorMsg())));
@@ -78,10 +79,11 @@ public class WebSocketService {
         }
     }
 
-    public void onLine(Long userId, ChannelHandlerContext ctx) {
-        userIdChannelMap.put(userId, ctx.channel());
-        channelUserIdMap.put(ctx.channel(), userId);
+    public void onLine(Long userId, Channel channel) {
+        userIdChannelMap.put(userId, channel);
+        channelUserIdMap.put(channel, userId);
         // 绑定
+        System.out.println("绑定========"+userId+" : "+localIp);
         routerServiceApi.bind(userId,localIp);
     }
 
@@ -91,16 +93,22 @@ public class WebSocketService {
     }
 
     public void connect(String token, ChannelHandlerContext ctx) {
-        Long userId = userServiceApi.getUserId(token);
-        if (userId == null) {
+        System.out.println("获取token" + token);
+        LoginResp loginResp = userServiceApi.getUserId(token);
+        if (loginResp == null) {
+            System.err.println("用户token过期");
             offLine(ctx);
             // 前端token过期，发送消息给前端清理。
             sendMsg(ctx.channel(), WSAdapter.buildInvalidateTokenResp());
+        }else{
+            onLine(loginResp.getUid(), ctx.channel());
+            sendMsg(ctx.channel(), loginResp.getWsBaseResp());
         }
-        onLine(userId, ctx);
     }
 
     public void handlerMessage(List<PushMessageDTO> data) {
+        System.out.println("消息推送！");
+        System.out.println(data);
         data.forEach(dto -> {
             WSPushTypeEnum wsPushTypeEnum = WSPushTypeEnum.of(dto.getPushType());
             switch (wsPushTypeEnum) {
@@ -127,6 +135,7 @@ public class WebSocketService {
     }
 
     public void sendToAllOnline(WSBaseResp<?> wsBaseResp, Long skipUid) {
+        System.out.println("推送全员！");
         userIdChannelMap.forEach((userId, channel) -> {
             if (Objects.nonNull(skipUid) && Objects.equals(userId, skipUid)) {
                 return;
@@ -140,6 +149,7 @@ public class WebSocketService {
      * 给本地channel发送消息
      */
     public void sendMsg(Channel channel, WSBaseResp wsBaseResp) {
+        System.err.println("消息推送到前端" + wsBaseResp);
         channel.writeAndFlush(new TextWebSocketFrame(JSONUtil.toJsonStr(wsBaseResp)));
     }
 

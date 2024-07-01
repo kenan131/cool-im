@@ -1,8 +1,9 @@
-package com.bin.model.user.enums;
+package com.bin.model.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  */
 @AllArgsConstructor
 @Getter
-public enum ChatActiveStatusEnum {
+public enum ChatActiveStatusEnum implements Serializable {
     ONLINE(1, "在线"),
     OFFLINE(2, "离线"),
     ;

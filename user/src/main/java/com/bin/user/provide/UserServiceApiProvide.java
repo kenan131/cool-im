@@ -1,7 +1,7 @@
 package com.bin.user.provide;
 
 import com.bin.api.user.UserServiceApi;
-import com.bin.model.user.enums.RoleEnum;
+import com.bin.model.common.exception.RoleEnum;
 import com.bin.model.user.entity.Black;
 import com.bin.model.user.vo.request.user.LoginReqDto;
 import com.bin.model.user.vo.response.user.LoginResp;
@@ -9,7 +9,7 @@ import com.bin.user.cache.imp.UserInfoCache;
 import com.bin.user.dao.BlackDao;
 import com.bin.user.dao.UserDao;
 import com.bin.model.user.entity.User;
-import com.bin.model.user.enums.ChatActiveStatusEnum;
+import com.bin.model.common.exception.ChatActiveStatusEnum;
 import com.bin.model.user.dto.CursorPageBaseReq;
 import com.bin.model.common.vo.response.CursorPageBaseResp;
 import com.bin.user.service.RoleService;
@@ -45,7 +45,7 @@ public class UserServiceApiProvide implements UserServiceApi {
     private UserService userService;
 
     @Override
-    public Long getUserId(String token) {
+    public LoginResp getUserId(String token) {
         return userService.getUserIdByToken(token);
     }
 

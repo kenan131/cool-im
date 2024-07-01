@@ -1,9 +1,9 @@
 package com.bin.user.event.listener;
 
-import com.bin.model.user.enums.WSRespTypeEnum;
+import com.bin.model.common.exception.WSRespTypeEnum;
 import com.bin.model.user.vo.response.ws.WSBlack;
 import com.bin.user.cache.imp.UserCache;
-import com.bin.model.user.enums.WSBaseResp;
+import com.bin.model.common.exception.WSBaseResp;
 import com.bin.user.event.UserBlackEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

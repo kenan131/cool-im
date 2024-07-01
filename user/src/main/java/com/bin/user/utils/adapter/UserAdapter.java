@@ -5,7 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.bin.model.user.entity.ItemConfig;
 import com.bin.model.user.entity.User;
 import com.bin.model.user.entity.UserBackpack;
-import com.bin.model.user.enums.YesOrNoEnum;
+import com.bin.model.common.exception.YesOrNoEnum;
 import com.bin.model.user.vo.response.user.BadgeResp;
 import com.bin.model.user.vo.response.user.UserInfoResp;
 import lombok.extern.slf4j.Slf4j;

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Description:
  * Author: <a href="https://github.com/zongzibinbin">abin</a>
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WSLoginSuccess {
+public class WSLoginSuccess implements Serializable {
     private Long uid;
     private String avatar;
     private String token;

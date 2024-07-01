@@ -2,7 +2,7 @@ package com.bin.im.dao;
 
 import com.bin.model.im.entity.RoomFriend;
 import com.bin.im.mapper.RoomFriendMapper;
-import com.bin.model.user.enums.NormalOrNoEnum;
+import com.bin.model.common.exception.NormalOrNoEnum;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

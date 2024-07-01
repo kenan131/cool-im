@@ -3,7 +3,7 @@ package com.bin.im.dao;
 import cn.hutool.core.collection.CollectionUtil;
 import com.bin.model.im.entity.Contact;
 import com.bin.model.im.entity.Message;
-import com.bin.model.user.enums.MessageStatusEnum;
+import com.bin.model.common.exception.MessageStatusEnum;
 import com.bin.im.mapper.MessageMapper;
 import com.bin.model.user.dto.CursorPageBaseReq;
 import com.bin.model.common.vo.response.CursorPageBaseResp;
